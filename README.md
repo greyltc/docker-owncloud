@@ -1,7 +1,7 @@
 docker-owncloud
 ===============
 
-Arch linux based docker container including owncloud running on apache with sqlite and xcache
+Arch Linux based Docker container including owncloud running on apache with sqlite and php-xcache
 
 ## Usage
 ```bash
