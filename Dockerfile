@@ -25,9 +25,17 @@ RUN sed -i 's,;extension=curl.so,extension=curl.so,g' /etc/php/php.ini
 # for ssl
 RUN pacman -Suy --noconfirm --needed openssl
 RUN sed -i 's,;extension=openssl.so,extension=openssl.so,g' /etc/php/php.ini
-#RUN sed -i 's,#LoadModule ssl_module modules/mod_ssl.so,LoadModule ssl_module modules/mod_ssl.so,g' /etc/httpd/conf/httpd.conf
-#RUN sed -i 's,#LoadModule socache_shmcb_module modules/mod_socache_shmcb.so,LoadModule socache_shmcb_module modules/mod_socache_shmcb.so,g' /etc/httpd/conf/httpd.conf
-#RUN sed -i 's,#Include conf/extra/httpd-ssl.conf,Include conf/extra/httpd-ssl.conf,g' /etc/httpd/conf/httpd.conf
+RUN sed -i 's,#LoadModule ssl_module modules/mod_ssl.so,LoadModule ssl_module modules/mod_ssl.so,g' /etc/httpd/conf/httpd.conf
+RUN sed -i 's,#LoadModule socache_shmcb_module modules/mod_socache_shmcb.so,LoadModule socache_shmcb_module modules/mod_socache_shmcb.so,g' /etc/httpd/conf/httpd.conf
+RUN sed -i 's,#Include conf/extra/httpd-ssl.conf,Include conf/extra/httpd-ssl.conf,g' /etc/httpd/conf/httpd.conf
+
+# generate a self-signed cert
+WORKDIR /etc/httpd/conf
+ENV SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost"
+RUN openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out server.key
+RUN chmod 600 server.key
+RUN openssl req -new -key server.key -out server.csr -subj $SUBJECT
+RUN openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
 # for php-gd
 RUN pacman -Suy --noconfirm --needed php-gd
@@ -51,22 +59,26 @@ RUN sed -i 's,;extension=sqlite3.so,extension=sqlite3.so,g' /etc/php/php.ini
 RUN sed -i 's,;extension=pdo_sqlite.so,extension=pdo_sqlite.so,g' /etc/php/php.ini
 
 # for mariadb (mysql) database
-#RUN pacman -Suy --noconfirm --needed mariadb
-#RUN sed -i 's,;extension=pdo_mysql.so,extension=pdo_mysql.so,g' /etc/php/php.ini
-#RUN sed -i 's,;extension=pdo_mysql.so,extension=pdo_mysql.so,g' /etc/php/php.ini
+RUN pacman -Suy --noconfirm --needed mariadb
+RUN sed -i 's,;extension=pdo_mysql.so,extension=pdo_mysql.so,g' /etc/php/php.ini
+RUN sed -i 's,;extension=mysql.so,extension=mysql.so,g' /etc/php/php.ini
 #RUN sed -i 's,mysql.trace_mode = Off,mysql.trace_mode = On,g' /etc/php/php.ini
 #RUN sed -i 's,mysql.default_host =,mysql.default_host = localhost,g' /etc/php/php.ini
 #RUN sed -i 's,mysql.default_user =,mysql.default_user = root,g' /etc/php/php.ini
 #RUN sed -i 's,mysql.default_password =,mysql.default_password = tacobell,g' /etc/php/php.ini
+#RUN cd '/usr'; /usr/bin/mysqld_safe --datadir='/var/lib/mysql' & sleep 5; /usr/bin/mysql_secure_installation --use-default; mysql_waitpid $(cat /var/lib/mysql/*.pid) 10
 
 # Install owncloud
 RUN pacman -Suy --noconfirm --needed owncloud
+
+# install some owncloud optional deps
+RUN pacman -Suy --noconfirm --needed php-apcu smbclient ffmpeg libreoffice-common
 
 # setup Apache for owncloud
 RUN cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
 RUN echo "Include conf/extra/owncloud.conf" >> /etc/httpd/conf/httpd.conf
 RUN chown -R http:http /usr/share/webapps/owncloud/
 
-# start apache
-CMD apachectl -DFOREGROUND
+# start apache and mysql
+CMD cd '/usr'; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'& apachectl -DFOREGROUND
 
