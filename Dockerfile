@@ -31,7 +31,7 @@ RUN sed -i 's,#Include conf/extra/httpd-ssl.conf,Include conf/extra/httpd-ssl.co
 
 # generate a self-signed cert
 WORKDIR /etc/httpd/conf
-ENV SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost"
+ENV SUBJECT "/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost"
 RUN openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out server.key
 RUN chmod 600 server.key
 RUN openssl req -new -key server.key -out server.csr -subj $SUBJECT
