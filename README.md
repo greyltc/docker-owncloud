@@ -1,7 +1,7 @@
 docker-owncloud
 ===============
 
-Arch Linux based Docker container including owncloud (as of this writing, version 7.0.4) running on apache with sqlite, mariadb and php-xcache
+Arch Linux based Docker container including owncloud (as of this writing, version 7.0.4) running on apache with sqlite, mariadb and php-xcache.
 
 ## Usage
 
