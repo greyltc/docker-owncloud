@@ -1,4 +1,4 @@
-FROM base/archlinux
+FROM l3iggs/archlinux
 MAINTAINER l3iggs <l3iggs@live.com>
 
 # update pacman db
