@@ -1,13 +1,5 @@
-FROM l3iggs/archlinux
+FROM l3iggs/archlinux-aur
 MAINTAINER l3iggs <l3iggs@live.com>
-
-# update pacman db
-RUN pacman -Suy --noconfirm
-
-# setup yaourt
-RUN pacman -Suy --noconfirm --needed base-devel
-RUN bash -c 'bash <(curl aur.sh) -si --noconfirm --asroot package-query yaourt'
-RUN yaourt -Suya
 
 # install apache and php
 RUN pacman -Suy --noconfirm --needed apache php php-apache openssl php-intl
