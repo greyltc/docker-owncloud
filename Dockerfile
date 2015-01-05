@@ -23,7 +23,7 @@ RUN sed -i 's,#Include conf/extra/httpd-ssl.conf,Include conf/extra/httpd-ssl.co
 
 # generate a self-signed cert
 WORKDIR /etc/httpd/conf
-ENV SUBJECT /C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost
+ENV SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost"
 RUN openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out server.key
 RUN chmod 600 server.key
 RUN openssl req -new -key server.key -out server.csr -subj $SUBJECT
@@ -57,8 +57,6 @@ RUN sed -i 's,;extension=mysql.so,extension=mysql.so,g' /etc/php/php.ini
 #RUN sed -i 's,mysql.trace_mode = Off,mysql.trace_mode = On,g' /etc/php/php.ini
 #RUN sed -i 's,mysql.default_host =,mysql.default_host = localhost,g' /etc/php/php.ini
 #RUN sed -i 's,mysql.default_user =,mysql.default_user = root,g' /etc/php/php.ini
-#RUN sed -i 's,mysql.default_password =,mysql.default_password = tacobell,g' /etc/php/php.ini
-#RUN cd '/usr'; /usr/bin/mysqld_safe --datadir='/var/lib/mysql' & sleep 5; /usr/bin/mysql_secure_installation --use-default; mysql_waitpid $(cat /var/lib/mysql/*.pid) 10
 
 # Install owncloud
 RUN pacman -Suy --noconfirm --needed owncloud
@@ -73,4 +71,3 @@ RUN chown -R http:http /usr/share/webapps/owncloud/
 
 # start apache and mysql
 CMD cd '/usr'; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'& apachectl -DFOREGROUND
-
