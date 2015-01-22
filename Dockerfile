@@ -1,4 +1,4 @@
-FROM l3iggs/archlinux:master
+FROM l3iggs/archlinux
 MAINTAINER l3iggs <l3iggs@live.com>
 
 # install apache and php
