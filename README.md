@@ -24,6 +24,10 @@ It's likely desirable for owncloud's data storage to be placed in a persistant s
 UID 33 or GID 33 (http in the container image) must have r/w permissions for `~/ocfiles` on the host system. Generally, it's enough to do:  
 ```chmod -R g+rw  ~/ocfiles; sudo chgrp -R 33  ~/ocfiles```  
 [Read this if you run into permissions issues in the container.](http://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker)
+1. **[Optional] Change your owncloud config storage location**  
+Similar to the above change, this allows the owncloud config directory to be stored outside of the docker container.  
+```-v ~/occonfig:/etc/webapps/owncloud/config```  
+```chmod -R g+rw  ~/occonfig; sudo chgrp -R 33  ~/occonfig```
 1. **[Optional] Setup owncloud to use mariadb instead of the default sqlite database**  
 On the Owncloud initial setup page, after setting up your admin account, instead of clicking the "Finish Setup" button, you can click "Storage & database" instead. Then click the "MySQL/MariaDB" enter 'root' in the Database user field and leave the password field blank. Choose any name you like for the Database name field. The Database host filed should be left as 'localhost' if you'd like to use the mariadb server provided in this docker image.
 1. **[Optional] Stop the docker-owncloud server instance**  
