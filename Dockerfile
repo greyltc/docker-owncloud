@@ -28,6 +28,11 @@ RUN openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out server.key
 RUN chmod 600 server.key
 RUN openssl req -new -key server.key -out server.csr -subj $SUBJECT
 RUN openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+RUN mkdir /https
+RUN ln -s /etc/httpd/conf/server.crt /https/server.crt
+RUN ln -s /etc/httpd/conf/server.key /https/server.key
+RUN sed -i 's,/etc/httpd/conf/server.crt,/https/server.crt,g' /etc/httpd/conf/extra/httpd-ssl.conf
+RUN sed -i 's,/etc/httpd/conf/server.key,/https/server.key,g' /etc/httpd/conf/extra/httpd-ssl.conf
 
 # for php-gd
 RUN pacman -Suy --noconfirm --needed php-gd
