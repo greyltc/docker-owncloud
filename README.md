@@ -7,7 +7,7 @@ Arch Linux based Docker container including owncloud (as of this writing, versio
 
 1. [**Install docker**](https://docs.docker.com/installation/)
 1. **Download and start the owncloud server instance**  
-`docker run --name oc -p 80:80 -p 443:443 -d l3iggs/docker-owncloud`
+`docker run --name oc -p 80:80 -p 443:443 -d l3iggs/owncloud`
 1. **Access the docker setup page**  
 Point your browser to:  
 http://localhost/owncloud  
