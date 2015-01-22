@@ -34,11 +34,7 @@ Assuming you have `server.crt` and `server.key` files in a directory `~/sslCert`
 ```chmod 400 ~/sslCert/server.key```   
 You can then add `-v ~/sslCert:/https` to the docker run command line to use your ssl certificate files.  
 1. **[Optional] Stop the docker-owncloud server instance**  
-  ```
-  docker stop oc
-  ```
+```docker stop oc```
 1. **[Optional] Delete the docker-owncloud server instance (after stopping it)**  
-  ```
-  docker rm oc
-  ```
+```docker rm oc```
 1. **Profit.**
