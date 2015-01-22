@@ -30,7 +30,7 @@ On the Owncloud initial setup page, after setting up your admin account, instead
 1. **[Optional] Use your own ssl certificate**
 This image comes with a self-generated ssl certificate and so you'll get browser warnings when you access owncloud via https. You can replace these self signed certificates with your own, properly generated cert files.
 Assuming you have `server.crt` and `server.key` files in a directory `~/sslCert` on the host machine:   
-`sudo chown -R root ~/sslCert; chgrp -R root ~/sslCert`  
+`sudo chown -R root ~/sslCert; sudo chgrp -R root ~/sslCert`  
 `sudo chmod 400 ~/sslCert/server.key`   
 You can then add `-v ~/sslCert:/https` to the docker run command line to use your ssl certificate files.  
 1. **[Optional] Stop the docker-owncloud server instance**  
