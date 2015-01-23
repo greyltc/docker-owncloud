@@ -13,6 +13,7 @@ RUN sed -i 's,;extension=xmlrpc.so,extension=xmlrpc.so,g' /etc/php/php.ini
 RUN sed -i 's,;extension=zip.so,extension=zip.so,g' /etc/php/php.ini
 RUN sed -i 's,;extension=bz2.so,extension=bz2.so,g' /etc/php/php.ini
 RUN sed -i 's,;extension=curl.so,extension=curl.so,g' /etc/php/php.ini
+RUN sed -i 's,;extension=ftp.so,extension=ftp.so,g' /etc/php/php.ini
 
 # for ssl
 RUN pacman -Suy --noconfirm --needed openssl
