@@ -66,6 +66,10 @@ RUN sed -i 's,;extension=mysql.so,extension=mysql.so,g' /etc/php/php.ini
 
 # Install owncloud
 RUN pacman -Suy --noconfirm --needed owncloud
+RUN sed -i 's,;php_value upload_max_filesize 513M,php_value upload_max_filesize 30G,g' /usr/share/webapps/owncloud/.htaccess
+RUN sed -i 's,;php_value post_max_size 513M,php_value post_max_size 30G,g' /usr/share/webapps/owncloud/.htaccess
+echo "output_buffering = 0" >> /usr/share/webapps/owncloud/.htaccess
+
 
 # install some owncloud optional deps
 RUN pacman -Suy --noconfirm --needed php-apcu smbclient ffmpeg libreoffice-common
