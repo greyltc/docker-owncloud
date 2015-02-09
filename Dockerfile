@@ -15,7 +15,6 @@ RUN sudo sed -i 's,;php_value upload_max_filesize 513M,php_value upload_max_file
 RUN sudo sed -i 's,;php_value post_max_size 513M,php_value post_max_size 30G,g' /usr/share/webapps/owncloud/.htaccess
 RUN sudo sed -i '$a output_buffering=Off' /usr/share/webapps/owncloud/.htaccess
 
-
 # setup Apache for owncloud
 RUN sudo cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
 RUN sudo sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
