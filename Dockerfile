@@ -1,6 +1,9 @@
 FROM l3iggs/lamp
 MAINTAINER l3iggs <l3iggs@live.com>
 
+# remove info.php
+RUN sudo rm /srv/http/info.php
+
 # install some owncloud optional deps
 RUN sudo pacman -Suy --noconfirm --needed smbclient
 #RUN pacman -Suy --noconfirm --needed ffmpeg
