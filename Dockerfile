@@ -72,7 +72,9 @@ RUN echo "output_buffering = 0" >> /usr/share/webapps/owncloud/.htaccess
 
 
 # install some owncloud optional deps
-RUN pacman -Suy --noconfirm --needed php-apcu smbclient ffmpeg libreoffice-common
+RUN pacman -Suy --noconfirm --needed php-apcu smbclient ffmpeg
+# this libreoffice-common no longer exists
+RUN pacman -Suy --noconfirm --needed  libreoffice-common
 
 # setup Apache for owncloud
 RUN cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
