@@ -77,6 +77,12 @@ RUN ln -s /etc/httpd/conf/server.key /https/server.key
 RUN sed -i 's,/etc/httpd/conf/server.crt,/https/server.crt,g' /etc/httpd/conf/extra/httpd-ssl.conf
 RUN sed -i 's,/etc/httpd/conf/server.key,/https/server.key,g' /etc/httpd/conf/extra/httpd-ssl.conf
 
+# install some owncloud optional deps
+RUN pacman -Suy --noconfirm --needed smbclient
+#RUN pacman -Suy --noconfirm --needed ffmpeg
+# libreoffice-common no longer exists
+#RUN pacman -Suy --noconfirm --needed  libreoffice-common
+
 # Install owncloud
 RUN pacman -Suy --noconfirm --needed owncloud
 
@@ -84,12 +90,6 @@ RUN pacman -Suy --noconfirm --needed owncloud
 RUN sed -i 's,;php_value upload_max_filesize 513M,php_value upload_max_filesize 30G,g' /usr/share/webapps/owncloud/.htaccess
 RUN sed -i 's,;php_value post_max_size 513M,php_value post_max_size 30G,g' /usr/share/webapps/owncloud/.htaccess
 RUN echo "output_buffering = 0" >> /usr/share/webapps/owncloud/.htaccess
-
-# install some owncloud optional deps
-RUN pacman -Suy --noconfirm --needed smbclient
-#RUN pacman -Suy --noconfirm --needed ffmpeg
-# libreoffice-common no longer exists
-#RUN pacman -Suy --noconfirm --needed  libreoffice-common
 
 # setup Apache for owncloud
 RUN cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
