@@ -27,7 +27,7 @@ Similar to the above change, this allows the owncloud config directory to be sto
 `chmod -R g+rw  ~/occonfig; sudo chgrp -R 33  ~/occonfig`
 1. **[Optional] Setup owncloud to use mariadb instead of the default sqlite database**  
 On the Owncloud initial setup page, after setting up your admin account, instead of clicking the "Finish Setup" button, you can click "Storage & database" instead. Then click the "MySQL/MariaDB" enter 'root' in the Database user field and leave the password field blank. Choose any name you like for the Database name field. The Database host filed should be left as 'localhost' if you'd like to use the mariadb server provided in this docker image.
-1. **[Optional] Use your own ssl certificate**
+1. **[Optional] Use your own ssl certificate**  
 This image comes with a self-generated ssl certificate and so you'll get browser warnings when you access owncloud via https. You can replace these self signed certificates with your own, properly generated cert files.
 Assuming you have `server.crt` and `server.key` files in a directory `~/sslCert` on the host machine:   
 `sudo chown -R root ~/sslCert; sudo chgrp -R root ~/sslCert`  
