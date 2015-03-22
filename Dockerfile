@@ -5,19 +5,19 @@ MAINTAINER l3iggs <l3iggs@live.com>
 RUN sudo rm /srv/http/info.php
 
 # install some owncloud optional deps
-RUN sudo pacman -Suy --noconfirm --needed smbclient
-RUN pacman -Suy --noconfirm --needed ffmpeg
+RUN sudo pacman -S --noconfirm --needed smbclient
+RUN sudo pacman -S --noconfirm --needed ffmpeg
 # libreoffice-common no longer exists
 #RUN pacman -Suy --noconfirm --needed  libreoffice-common
 
 # Install owncloud
-RUN sudo pacman -Suy --noconfirm --needed owncloud
+RUN sudo pacman -S --noconfirm --needed owncloud
 
 # Install owncloud addons
-RUN sudo pacman -Suy --noconfirm --needed owncloud-app-bookmarks
-RUN sudo pacman -Suy --noconfirm --needed owncloud-app-calendar
-RUN sudo pacman -Suy --noconfirm --needed owncloud-app-contacts
-RUN sudo pacman -Suy --noconfirm --needed owncloud-app-documents
+RUN sudo pacman -S --noconfirm --needed owncloud-app-bookmarks
+RUN sudo pacman -S --noconfirm --needed owncloud-app-calendar
+RUN sudo pacman -S --noconfirm --needed owncloud-app-contacts
+RUN sudo pacman -S --noconfirm --needed owncloud-app-documents
 
 # enable large file uploads
 RUN sudo sed -i 's,php_value upload_max_filesize 513M,php_value upload_max_filesize 30G,g' /usr/share/webapps/owncloud/.htaccess
