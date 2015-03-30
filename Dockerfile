@@ -1,5 +1,7 @@
 FROM l3iggs/lamp
 MAINTAINER l3iggs <l3iggs@live.com>
+# Report issues here: https://github.com/l3iggs/docker-owncloud/issues
+# Say thanks by adding a comment here: https://registry.hub.docker.com/u/l3iggs/owncloud/
 
 # remove info.php
 RUN sudo rm /srv/http/info.php
