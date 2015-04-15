@@ -6,7 +6,7 @@ Arch Linux based Docker container including owncloud running on apache with sqli
 Any issues you encounter withthis image can be reported here:  
 https://github.com/l3iggs/docker-owncloud/issues
 
-Say thanks by adding a comment here:  
+Say thanks by adding a comment or a star here:  
 https://registry.hub.docker.com/u/l3iggs/owncloud/
 
 ## Usage
