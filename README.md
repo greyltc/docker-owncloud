@@ -14,7 +14,7 @@ https://registry.hub.docker.com/u/l3iggs/owncloud/
 1. [**Install docker**](https://docs.docker.com/installation/)
 1. **Download and start the owncloud server instance**  
 `docker run --name oc -p 80:80 -p 443:443 -d l3iggs/owncloud`
-1. **Access the docker setup page**  
+1. **Access the owncloud setup page**  
 Point your browser to:  
 http://localhost/owncloud  
 or  
@@ -32,13 +32,13 @@ Similar to the above change, this allows the owncloud config directory to be sto
 `-v ~/occonfig:/etc/webapps/owncloud/config`  
 `chmod -R g+rw  ~/occonfig; sudo chgrp -R 33  ~/occonfig`
 1. **[Optional] Setup owncloud to use mariadb instead of the default sqlite database**  
-On the Owncloud initial setup page, after setting up your admin account, instead of clicking the "Finish Setup" button, you can click "Storage & database" instead. Then click the "MySQL/MariaDB" enter 'root' in the Database user field and leave the password field blank. Choose any name you like for the Database name field. The Database host filed should be left as 'localhost' if you'd like to use the mariadb server provided in this docker image.
+On the Owncloud initial setup page, after setting up your admin account, instead of clicking the "Finish Setup" button, you can click "Storage & database" instead. Then click the "MySQL/MariaDB" enter 'root' in the Database user field and leave the password field blank. Choose any name you like for the Database name field. The Database host filed should be left as 'localhost' if you'd like to use the mariadb server provided in this docker image. You can get even fancier and direct owncloud to use a MySQL server outside of the docker image.
 1. **[Optional] Use your own ssl certificate**  
-This image comes with a self-generated ssl certificate and so you'll get browser warnings when you access owncloud via https. You can replace these self signed certificates with your own, properly generated cert files.
-Assuming you have `server.crt` and `server.key` files in a directory `~/sslCert` on the host machine:   
+This image comes with a self-generated ssl certificate and so you'll get browser warnings when you access owncloud via https. Know that currently the keys for this cert. are inspectable by anyone who wishes to. You can (and should, if you're concerned about security) replace the certificate provided here certificates with your own, properly generated cert. files:  
+Assuming you have your own `server.crt` and `server.key` files in a directory `~/sslCert` on the host machine:   
 `sudo chown -R root ~/sslCert; sudo chgrp -R root ~/sslCert`  
 `sudo chmod 400 ~/sslCert/server.key`   
-You can then add `-v ~/sslCert:/https` to the docker run command line to use your ssl certificate files.  
+Then add `-v ~/sslCert:/https` to the docker run command line and you'll be using your own, private ssl certificate.  
 1. **[Optional] Stop the docker-owncloud server instance**  
 `docker stop oc`
 1. **[Optional] Delete the docker-owncloud server instance (after stopping it)**  
