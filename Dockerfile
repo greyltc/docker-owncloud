@@ -32,5 +32,8 @@ RUN sed -i 's,Options Indexes FollowSymLinks,Options -Indexes,g' /etc/httpd/conf
 RUN sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
 RUN chown -R http:http /usr/share/webapps/owncloud/
 
+# expose web server ports
+EXPOSE 80 443
+
 # start apache and mysql
 CMD cd '/usr'; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'& apachectl -DFOREGROUND
