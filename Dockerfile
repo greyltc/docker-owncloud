@@ -35,5 +35,10 @@ RUN chown -R http:http /usr/share/webapps/owncloud/
 # expose web server ports
 EXPOSE 80 443
 
+# expose some important dirs in the image as volumes
+VOLUME ["/usr/share/webapps/owncloud/data", \
+        "/etc/webapps/owncloud/config", \
+        "/https"] # place your ssl cert files in here. name them server.key and server.crt
+
 # start apache and mysql
 CMD cd '/usr'; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'& apachectl -DFOREGROUND
