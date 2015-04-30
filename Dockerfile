@@ -39,7 +39,12 @@ EXPOSE 443
 # expose some important directories as volumes
 VOLUME ["/usr/share/webapps/owncloud/data"]
 VOLUME ["/etc/webapps/owncloud/config"]
-VOLUME ["/https"] # place your ssl cert files in here. name them server.key and server.crt
+
+# place your ssl cert files in here. name them server.key and server.crt
+VOLUME ["/https"]
+
+# TODO: figure out why this directory does not already exist
+RUN mkdir /run/httpd
 
 # start apache and mysql servers
-CMD ["cd /usr; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'& apachectl -DFOREGROUND"]
+CMD cd /usr; /usr/bin/mysqld_safe --datadir=/var/lib/mysql& /usr/bin/apachectl -DFOREGROUND
