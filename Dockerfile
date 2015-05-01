@@ -6,11 +6,14 @@ MAINTAINER l3iggs <l3iggs@live.com>
 # remove info.php
 RUN rm /srv/http/info.php
 
-# install some owncloud optional deps
+# to mount SAMBA shares: 
 RUN pacman -S --noconfirm --needed smbclient
+
+# for video file previews
 RUN pacman -S --noconfirm --needed ffmpeg
-# libreoffice-common no longer exists
-#RUN pacman -S --noconfirm --needed  libreoffice-common
+
+# for document previews
+RUN pacman -S --noconfirm --needed libreoffice-fresh
 
 # Install owncloud
 RUN pacman -S --noconfirm --needed owncloud
