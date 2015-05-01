@@ -32,10 +32,6 @@ RUN sed -i 's,Options Indexes FollowSymLinks,Options -Indexes,g' /etc/httpd/conf
 RUN sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
 RUN chown -R http:http /usr/share/webapps/owncloud/
 
-# expose web server ports
-EXPOSE 80
-EXPOSE 443
-
 # expose some important directories as volumes
 VOLUME ["/usr/share/webapps/owncloud/data"]
 VOLUME ["/etc/webapps/owncloud/config"]
