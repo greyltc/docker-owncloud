@@ -33,20 +33,18 @@ RUN sed -i 's,<IfModule mod_php5.c>,<IfModule mod_php5.c>\nphp_value output_buff
 ADD owncloud.conf /etc/httpd/conf/extra/owncloud.conf
 RUN sed -i 's,Options Indexes FollowSymLinks,Options -Indexes,g' /etc/httpd/conf/httpd.conf
 RUN sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
+RUN chown -R http:http /usr/share/webapps/owncloud/
 
 # expose web server ports
 EXPOSE 80
 EXPOSE 443
 
 # expose some important directories as volumes
-VOLUME ["/usr/share/webapps/owncloud/data"]
-VOLUME ["/etc/webapps/owncloud/config"]
+#VOLUME ["/usr/share/webapps/owncloud/data"]
+#VOLUME ["/etc/webapps/owncloud/config"]
 
 # place your ssl cert files in here. name them server.key and server.crt
-VOLUME ["/https"]
-
-# set permissions for owncloud directory 
-RUN chown -R http:http /usr/share/webapps/owncloud/
+#VOLUME ["/https"]
 
 # TODO: figure out why this directory does not already exist
 RUN mkdir /run/httpd
