@@ -40,11 +40,11 @@ EXPOSE 80
 EXPOSE 443
 
 # expose some important directories as volumes
-VOLUME ["/usr/share/webapps/owncloud/data"]
-VOLUME ["/etc/webapps/owncloud/config"]
+#VOLUME ["/usr/share/webapps/owncloud/data"]
+#VOLUME ["/etc/webapps/owncloud/config"]
 
 # place your ssl cert files in here. name them server.key and server.crt
-VOLUME ["/https"]
+#VOLUME ["/https"]
 
 # TODO: figure out why this directory does not already exist
 RUN mkdir /run/httpd
