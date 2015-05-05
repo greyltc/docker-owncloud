@@ -17,6 +17,7 @@ RUN pacman -S --noconfirm --needed libreoffice-fresh
 
 # Install owncloud
 RUN pacman -S --noconfirm --needed owncloud
+RUN mv /usr/share/webapps/owncloud/config/config.sample.php mv /usr/share/webapps/owncloud/config/config.php 
 
 # Install owncloud addons
 RUN pacman -S --noconfirm --needed owncloud-app-bookmarks
