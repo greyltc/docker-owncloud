@@ -39,6 +39,9 @@ Assuming you have your own `server.crt` and `server.key` files in a directory `~
 `sudo chown -R root ~/sslCert; sudo chgrp -R root ~/sslCert`  
 `sudo chmod 400 ~/sslCert/server.key`   
 Then add `-v ~/sslCert:/https` to the docker run command line and you'll be using your own, private ssl certificate.  
+1. **[Optional] Setup trusted domains**  
+Accessing your owncloud server by pointing your web browser at http(s)://localhost/owncloud is fine, but maybe you've mapped the server to some hostname other than localhost. In order to access it via an address like http(s)://your.domain/owncloud you should add your.domain to ownCloud's list of trusted domains. To do that, after you've completed the setup from step 2 above, simply visit: `http://localhost/owncloud/index.php/settings/admin?trustDomain=your.domain`  
+You'll get a message box asking you to verify the addition. After accepting that check, you should be able to access your owncloud server from http(s)://your.domain/owncloud (provided that you have the domain set up properly to point to the owncloud server in the docker container).
 1. **[Optional] Stop the docker-owncloud server instance**  
 `docker stop oc`
 1. **[Optional] Delete the docker-owncloud server instance (after stopping it)**  
