@@ -17,7 +17,12 @@ RUN pacman -S --noconfirm --needed libreoffice-fresh
 
 # Install owncloud
 RUN pacman -S --noconfirm --needed owncloud
-RUN mv /usr/share/webapps/owncloud/config/config.sample.php mv /usr/share/webapps/owncloud/config/config.php 
+
+# set up initial owncloud config.php
+RUN echo '<?php' > /usr/share/webapps/owncloud/config/config.php
+RUN echo '$CONFIG = array (' >> /usr/share/webapps/owncloud/config/config.php
+RUN echo "'trusted_domains' => array(${TRUSTED_DOMAINS})," >> /usr/share/webapps/owncloud/config/config.php
+RUN echo ');' >> /usr/share/webapps/owncloud/config/config.php
 
 # Install owncloud addons
 RUN pacman -S --noconfirm --needed owncloud-app-bookmarks
@@ -35,6 +40,7 @@ RUN sed -i 's,<IfModule mod_php5.c>,<IfModule mod_php5.c>\nphp_value output_buff
 ADD owncloud.conf /etc/httpd/conf/extra/owncloud.conf
 RUN sed -i 's,Options Indexes FollowSymLinks,Options -Indexes,g' /etc/httpd/conf/httpd.conf
 RUN sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
+RUN echo ServerName ${HOSTNAME} >> /etc/httpd/conf/httpd.conf
 RUN chown -R http:http /usr/share/webapps/owncloud/
 
 # expose web server ports
