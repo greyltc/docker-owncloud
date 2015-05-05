@@ -44,5 +44,9 @@ RUN chown -R http:http /usr/share/webapps/owncloud/
 # place your ssl cert files in here. name them server.key and server.crt
 #VOLUME ["/https"]
 
-# start apache and mysql servers
-CMD cd /usr; /usr/bin/mysqld_safe --datadir=/var/lib/mysql& /usr/bin/apachectl -DFOREGROUND
+
+ENV START_APACHE true
+ENV START_MYSQL true
+
+# start servers
+CMD ["/root/startServers.sh"]
