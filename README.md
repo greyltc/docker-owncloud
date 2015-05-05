@@ -42,9 +42,9 @@ Assuming you have your own `server.crt` and `server.key` files in a directory `~
 Then add `-v ~/sslCert:/https` to the docker run command line.  
 _For option (B) (using the built-in script to re-generate your own self-sigend ssl certificate):_  
 Any time after starting the docker image as described above, run the following two commands:  
-`docker exec -it oc SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" /etc/httpd/conf/genSSLKey.sh`  
-`docker exec -it oc apachectl graceful`  
-After these commands, any NEW connections will use the newly generated certificates. These certificates are stored inside the docker container, so if you upgrade it or otherwise reset it, you'll need to re-generate these. You can edit the `SUBJECT` of the certificate to your liking, especially important if you don't want your certificate to be for `localhost`
+`docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" /etc/httpd/conf/genSSLKey.sh'`  
+`docker exec -it oc apachectl restart` <-- note that this will terminate ongoing connections  
+These certificates are stored inside the docker container, so if you upgrade it or otherwise reset or delete the container, you'll need to re-generate these (and you'll silently fall back to using the pre-generated, unsecure certs). You can edit the `SUBJECT` of the certificate to your liking, especially important if you don't want your certificate to be for `localhost`
 For either (A) or (B), remember to turn on the option to force https connections in the ownCloud admin settings page to take advantage of your hardened security.
 1. **[Optional] Stop the docker-owncloud server instance**  
 `docker stop oc`
