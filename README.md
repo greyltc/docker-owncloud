@@ -44,7 +44,7 @@ _For option (B) (using the built-in script to re-generate your own self-sigend s
 Any time after starting the docker image as described above, run the following two commands:  
 `docker exec -it oc /etc/httpd/conf/genSSLKey.sh`  
 `docker exec -it oc apachectl restart`  
-These certificates are stored inside the docker container, soif you upgrade it or otherwise reset it, you'll need to re-generate these.  
+These certificates are stored inside the docker container, so if you upgrade it or otherwise reset it, you'll need to re-generate these.  
 For either (A) or (B), remember to turn on the option to force https connections in the ownCloud admin settings page to take advantage of your hardened security.
 1. **[Optional] Stop the docker-owncloud server instance**  
 `docker stop oc`
