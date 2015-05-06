@@ -32,8 +32,9 @@ RUN sed -i "s,php_value post_max_size 513M,php_value post_max_size ${MAX_UPLOAD_
 RUN sed -i 's,<IfModule mod_php5.c>,<IfModule mod_php5.c>\nphp_value output_buffering Off,g' /usr/share/webapps/owncloud/.htaccess
 
 # setup Apache for owncloud
-ADD owncloud.conf /etc/httpd/conf/extra/owncloud.conf
-RUN sed -i 's,Options Indexes FollowSymLinks,Options -Indexes,g' /etc/httpd/conf/httpd.conf
+RUN cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
+RUN sed -i '/<VirtualHost/,/<\/VirtualHost>/d' /etc/httpd/conf/extra/owncloud.conf
+RUN sed -i 's,Options Indexes FollowSymLinks,Options -Indexes FollowSymLinks,g' /etc/httpd/conf/httpd.conf
 RUN sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
 RUN chown -R http:http /usr/share/webapps/owncloud/
 
