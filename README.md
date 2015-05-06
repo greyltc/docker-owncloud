@@ -12,7 +12,7 @@ __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for som
 
 ### Features
 - Uses php-xcache for the best possible performance
-- Comes with a built in (optional) MySQL database server giving a performance boost over the default sqlite
+- Built in (optional) MySQL database server (faster than sqlite default)
 - Based on Arch Linux ensuring __everything__ is cutting edge & up to date
 - SSL (HTTPS) encryption works out-of-the-box
 - Enable automatic SSL certificate regeneration at runtime for maximum security
