@@ -1,7 +1,6 @@
 docker-owncloud
 ===============
-
-Arch Linux based Docker container including ownCloud via apache with speedups provided by php-xcache and built-in mysql and sqlite database support.
+Simple to use Docker container with the latest ownCloud server release, complete with all the bells and whistles.
 
 Please report any issues or improvement ideas here:  
 https://github.com/l3iggs/docker-owncloud/issues
@@ -9,16 +8,21 @@ https://github.com/l3iggs/docker-owncloud/issues
 Say thanks by adding a comment or a star here:  
 https://registry.hub.docker.com/u/l3iggs/owncloud/
 
-The following official ownCloud apps come pre-installed here:
-- Bookmarks
-- Calendar
-- Contacts
-- Documents
-- Gallery
-
 __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for some stuff that I didn't include in this readme because I think it's getting too big.
 
-## Usage
+### Features
+- Uses php-xcache for the best possible performance
+- Comes with a built in (optional) MySQL database server giving a performance boost over the default sqlite
+- Based on Arch Linux ensuring __everything__ is cutting edge & up to date
+- SSL (HTTPS) encryption works out-of-the-box with the option to re-generate a new SSL certificate at runtime for maximum security
+- Comes complete with the following official ownCloud apps:
+ - Bookmarks
+ - Calendar
+ - Contacts
+ - Documents
+ - Gallery
+
+### Usage
 
 1. [**Install docker**](https://docs.docker.com/installation/)
 1. **Download and start the owncloud server instance**  
