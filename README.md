@@ -51,7 +51,7 @@ For either (A) or (B), remember to turn on the option to force https connections
 1. **[Optional] Access your ownCloud server from a URL other than localhost**  
 Accessing your owncloud server by pointing your web browser at http(s)://localhost/owncloud is fine, but maybe localhost is also some-machine.your.domain and you want to get to your ownCloud install from elsewhere by pointing your browser to http(s)://some-machine.your.domain/owncloud. In order to do that you should add some-machine.your.domain to ownCloud's list of trusted domains. After you've completed the setup from step 2 above and you're logged in with an account with admin privilages, simply visit: `http://localhost/owncloud/index.php/settings/admin?trustDomain=some-machine.your.domain`  
 You'll get a message box asking you to verify the addition. After accepting that check, you should be able to access your owncloud server from http(s)://some-machine.your.domain/owncloud  
-Note that if you wish to use https to access your ownCloud with a URL other than localhost, you'll need to make sure your ssl certificates match the hostname you're accessing it via.
+Note that if you wish to use https to access your ownCloud with a URL other than localhost, you'll need to make sure the common name (CN) field in your certificate matches the hostname you're accessing it via (CN=localhost in the examples above).
 1. **[Optional] Stop the docker-owncloud server instance**  
 `docker stop oc`
 1. **[Optional] Delete the docker-owncloud server instance (after stopping it)**  
