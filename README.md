@@ -8,7 +8,7 @@ https://github.com/l3iggs/docker-owncloud/issues
 Say thanks by adding a comment or a star here:  
 https://registry.hub.docker.com/u/l3iggs/owncloud/
 
-__Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for some stuff that I didn't include in this readme because I think it's getting too big.
+__Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for some stuff that I didn't include here because I thought the readme was getting too big.
 
 ### Features
 - Uses php-xcache for the best possible performance
