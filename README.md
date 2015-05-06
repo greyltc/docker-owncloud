@@ -16,6 +16,8 @@ The following official ownCloud apps come pre-installed here:
 - Documents
 - Gallery
 
+__Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for some stuff that I didn't include in this readme because I think it's getting too big.
+
 ## Usage
 
 1. [**Install docker**](https://docs.docker.com/installation/)
