@@ -45,7 +45,7 @@ RUN chown -R http:http /usr/share/webapps/owncloud/
 #VOLUME ["/https"]
 
 # set some variable defaults
-ENV REGENERATE_SSL_CERT false
+ENV REGENERATE_SSL_CERT true
 ENV START_APACHE true
 ENV START_MYSQL true
 
