@@ -9,6 +9,13 @@ https://github.com/l3iggs/docker-owncloud/issues
 Say thanks by adding a comment or a star here:  
 https://registry.hub.docker.com/u/l3iggs/owncloud/
 
+The following official ownCloud apps come pre-installed here:
+- Bookmarks
+- Calendar
+- Contacts
+- Documents
+- Gallery
+
 ## Usage
 
 1. [**Install docker**](https://docs.docker.com/installation/)
