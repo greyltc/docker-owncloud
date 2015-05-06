@@ -35,19 +35,23 @@ Appairently using MySQL/mariadb is much faster than the default sqlite database 
 1. **[Optional] Harden security**  
 This image comes complete with a self-signed ssl certificate already built in, so https access is ready to go out of the box. I've provided this pre-generated certificate for convienence and testing purposes only. It affords greatly reduced security since the "private" key is not actually private; anyone can download this image and inspect the keys and then decrypt your ownCloud traffic. To make the ssl connection to this ownCloud server secure, you can (A) provide your own (secret) ssl certificate files or (B) use the script provided here to generate new, self-signed certificate files. Both will provide equal security but (B) will result in browser warnings whenever somone visits your site since the web browser will likely not trust your self-signed keys.  
 _For option (A) (providing your own SSL cert files):_  
-Assuming you have your own `server.crt` and `server.key` files in a directory `~/sslCert` on the host machine:   
+Assuming you have your own `server.crt` and `server.key` files in a directory `~/sslCert` on the host machine run:   
 `sudo chown -R root ~/sslCert; sudo chgrp -R root ~/sslCert`  
 `sudo chmod 400 ~/sslCert/server.key`   
-Then add `-v ~/sslCert:/https` to the docker run command line.  
+Then insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
+`-v ~/sslCert:/https`  
 _For option (B) (using the built-in script to re-generate your own self-sigend ssl certificate):_  
 Any time after starting the docker image as described above, run the following two commands:  
 `docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" /etc/httpd/conf/genSSLKey.sh'`  
 `docker exec -it oc apachectl restart` <-- note that this will terminate ongoing connections  
-These certificates are stored inside the docker container, so if you upgrade it or otherwise reset or delete the container, you'll need to re-generate these (and you'll silently fall back to using the pre-generated, unsecure certs). You can edit the `SUBJECT` of the certificate to your liking, especially important if you don't want your certificate to be for `localhost`  
+To have a new ssl certificate generated automatically every time the image is started, insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
+`-e REGENERATE_SSL_CERT=true -e SUBJECT=/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost`
+You can edit the `SUBJECT` of the certificate to your liking, especially important if you don't want your certificate to be for `localhost` (see the next optional step below)  
 For either (A) or (B), remember to turn on the option to force https connections in the ownCloud admin settings page to take advantage of your hardened security.
 1. **[Optional] Access your ownCloud server from a URL other than localhost**  
 Accessing your owncloud server by pointing your web browser at http(s)://localhost/owncloud is fine, but maybe localhost is also some-machine.your.domain and you want to get to your ownCloud install from elsewhere by pointing your browser to http(s)://some-machine.your.domain/owncloud. In order to do that you should add some-machine.your.domain to ownCloud's list of trusted domains. After you've completed the setup from step 2 above and you're logged in with an account with admin privilages, simply visit: `http://localhost/owncloud/index.php/settings/admin?trustDomain=some-machine.your.domain`  
-You'll get a message box asking you to verify the addition. After accepting that check, you should be able to access your owncloud server from http(s)://some-machine.your.domain/owncloud
+You'll get a message box asking you to verify the addition. After accepting that check, you should be able to access your owncloud server from http(s)://some-machine.your.domain/owncloud  
+Note that if you wish to use https to access your ownCloud with a URL other than localhost, you'll need to make sure your ssl certificates match the hostname you're accessing it via.
 1. **[Optional] Stop the docker-owncloud server instance**  
 `docker stop oc`
 1. **[Optional] Delete the docker-owncloud server instance (after stopping it)**  
