@@ -23,6 +23,7 @@ RUN pacman -S --noconfirm --needed owncloud-app-bookmarks
 RUN pacman -S --noconfirm --needed owncloud-app-calendar
 RUN pacman -S --noconfirm --needed owncloud-app-contacts
 RUN pacman -S --noconfirm --needed owncloud-app-documents
+RUN pacman -S --noconfirm --needed owncloud-app-gallery
 
 # enable large file uploads
 ENV MAX_UPLOAD_SIZE 30G
