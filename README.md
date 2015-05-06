@@ -45,7 +45,7 @@ Any time after starting the docker image as described above, run the following t
 `docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" /etc/httpd/conf/genSSLKey.sh'`  
 `docker exec -it oc apachectl restart` <-- note that this will terminate ongoing connections  
 To have a new ssl certificate generated automatically every time the image is started, insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
-`-e REGENERATE_SSL_CERT=true -e SUBJECT=/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost`
+`-e REGENERATE_SSL_CERT=true -e SUBJECT=/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost`  
 You can edit the `SUBJECT` of the certificate to your liking, especially important if you don't want your certificate to be for `localhost` (see the next optional step below)  
 For either (A) or (B), remember to turn on the option to force https connections in the ownCloud admin settings page to take advantage of your hardened security.
 1. **[Optional] Access your ownCloud server from a URL other than localhost**  
