@@ -67,3 +67,4 @@ From time-to-time I'll update the continer to add new features or fix bugs or up
 - If the above command returns "Status: Image is up to date" then you've got the latest image and you're done. Otherwise:
   - Run `docker stop oc` <-- warning: this will immediately stop your server
   - Then run `docker rm oc` <-- WARNING: this may cause catastrophic data loss. It WILL delete anything stored inside the container. If you wish to retain important things like data files and configuration files after running this command, then see the wiki on Github for instructions on how to store these things outside of the container.
+- Now start the new container again like normal.
