@@ -62,7 +62,7 @@ You can restart the container later with `docker start oc`
 
 ### Updating to the latest container
 
-From time-to-time I'll update the continer to add new features or fix bugs or update to a new ownCloud server release, so you
+From time-to-time I'll update the continer to add new features or fix bugs or update to a new ownCloud server release, so you might want to update the ownCloud container you're using.
 - Run `docker pull l3iggs/owncloud`
 - If the above command returns "Status: Image is up to date" then you've got the latest image and you're done. Otherwise:
   - Run `docker stop oc` <-- warning: this will immediately stop your server
