@@ -13,18 +13,22 @@ __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for som
 ### Features
 - Uses php-xcache for the best possible performance
 - Built in (optional) MySQL database server (faster than sqlite default)
+  - Or specify your own pre-existing database server during setup
+- Web GUI driven initial setup of user/password/database
 - Based on Arch Linux ensuring __everything__ is cutting edge & up to date
 - SSL (HTTPS) encryption works out-of-the-box
+  - Tweaked for maximum security while maintaining compatibility 
 - Optionally enable automatic SSL certificate regeneration at runtime for maximum security
   - Or easily incorporate your own SSL certificates
 - In-browser document viewing and editing ready (.odt, .doc, and .docx)
 - In-browser media viewing ready (pretty much everything I think)
-- Comes complete with the following official ownCloud apps:
+- Comes complete with all of the official ownCloud apps pre-installed:
  - Bookmarks
  - Calendar
  - Contacts
  - Documents
  - Gallery
+- Or install your own 3rd party apps
 
 ### Usage
 
