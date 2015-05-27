@@ -43,7 +43,7 @@ Point your browser to:
 http://localhost/owncloud  
 or  
 https://localhost/owncloud  
-and follow the on-onscreen instructions to finish the owncloud server setup.
+and follow the instructions in the web interface to finish the owncloud server setup.
 1. **[Optional] Harden security**  
 This image comes complete with a self-signed ssl certificate already built in, so https access is ready to go out of the box. I've provided this pre-generated certificate for convienence and testing purposes only. It affords greatly reduced security since the "private" key is not actually private; anyone can download this image and inspect the keys and then decrypt your ownCloud traffic. To make the ssl connection to this ownCloud server secure, you can (A) provide your own (secret) ssl certificate files or (B) use the script provided here to generate new, self-signed certificate files. Both will provide equal security but (B) will result in browser warnings whenever somone visits your site since the web browser will likely not trust your self-signed keys.
 
