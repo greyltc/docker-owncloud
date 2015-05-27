@@ -52,11 +52,11 @@ Assuming you have your own `server.crt` and `server.key` files in a directory `~
 sudo chown -R root ~/sslCert
 sudo chgrp -R root ~/sslCert  
 sudo chmod 400 ~/sslCert/server.key
-```
+```  
 Then insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
   ```
 -v ~/sslCert:/https
-```
+```  
 _For option (B) (using the built-in script to re-generate your own self-sigend ssl certificate):_  
   - You can regenerate a new SSL key anytime on the fly. After starting the docker image as described above, run the following commands:  
   ```
