@@ -3,6 +3,9 @@ MAINTAINER l3iggs <l3iggs@live.com>
 # Report issues here: https://github.com/l3iggs/docker-owncloud/issues
 # Say thanks by adding a star or a comment here: https://registry.hub.docker.com/u/l3iggs/owncloud/
 
+# upldate package list
+RUN pacman -Sy
+
 # set environmnt variable defaults
 ENV REGENERATE_SSL_CERT false
 ENV START_APACHE true
