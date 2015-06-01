@@ -48,6 +48,9 @@ RUN sed -i 's,Options Indexes FollowSymLinks,Options -Indexes +FollowSymLinks,g'
 RUN sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
 RUN chown -R http:http /usr/share/webapps/owncloud/
 
+# configure PHP open_basedir
+RUN sed -i 's,^open_basedir.*$,\0:/usr/share/webapps/owncloud/:/usr/share/webapps/owncloud/config/:/etc/webapps/owncloud/config/,g' /etc/php/php.ini
+
 # expose some important directories as volumes
 #VOLUME ["/usr/share/webapps/owncloud/data"]
 #VOLUME ["/etc/webapps/owncloud/config"]
