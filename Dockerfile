@@ -51,7 +51,7 @@ RUN chown -R http:http /usr/share/webapps/owncloud/
 # expose some important directories as volumes
 #VOLUME ["/usr/share/webapps/owncloud/data"]
 #VOLUME ["/etc/webapps/owncloud/config"]
-#VOLUME [“/usr/share/webapps/owncloud/apps”]
+#VOLUME ["/usr/share/webapps/owncloud/apps"]
 
 # place your ssl cert files in here. name them server.key and server.crt
 #VOLUME ["/https"]
