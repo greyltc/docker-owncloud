@@ -27,12 +27,10 @@ RUN pacman -S --noconfirm --needed libreoffice-fresh
 
 # Install owncloud
 RUN pacman -S --noconfirm --needed owncloud
-# set ownCloud to use PHP Xcache
-RUN echo '<?php
-$CONFIG = array (
-  'memcache.local' => '\\OC\\Memcache\\XCache',
-);
-' > /usr/share/webapps/owncloud/config/config.php
+# add our custom config.php
+ADD config.php /usr/share/webapps/owncloud/config/config.php
+RUN chmod g+rw /usr/share/webapps/owncloud/config/config.php
+RUN chgrp http /usr/share/webapps/owncloud/config/config.php
 
 # Install owncloud addons
 RUN pacman -S --noconfirm --needed owncloud-app-bookmarks
