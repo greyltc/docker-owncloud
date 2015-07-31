@@ -29,8 +29,11 @@ RUN pacman -S --noconfirm --needed libreoffice-fresh
 RUN pacman -S --noconfirm --needed owncloud
 # add our custom config.php
 ADD config.php /usr/share/webapps/owncloud/config/config.php
-RUN chmod g+rw /usr/share/webapps/owncloud/config/config.php
-RUN chgrp http /usr/share/webapps/owncloud/config/config.php
+
+# fixup the permissions (because appairently the package maintainer can't get it right)
+ADD fixPerms.sh /root/fixPerms.sh
+RUN chmod +x /root/fixPerms.sh
+RUN /root/fixPerms.sh
 
 # Install owncloud addons
 RUN pacman -S --noconfirm --needed owncloud-app-bookmarks
