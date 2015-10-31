@@ -77,11 +77,12 @@ RUN chown -R http:http /usr/share/webapps/owncloud/
 # place your ssl cert files in here. name them server.key and server.crt
 #VOLUME ["/https"]
 
-# cron (Issue #42)
+# Enable cron (Issue #42)
 RUN pacman -S --noconfirm --needed cronie
 RUN systemctl enable cronie.service
 ADD configs/cron.conf /etc/oc-cron.conf
 RUN crontab /etc/oc-cron.conf
+RUN systemctl start cronie.service; exit 0 # force success due to issue with cronie start https://goo.gl/DcGGb
 
 # start servers
 CMD ["/root/startServers.sh"]
