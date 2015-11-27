@@ -12,6 +12,7 @@ https://registry.hub.docker.com/u/l3iggs/owncloud/
 __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for some stuff that I didn't include here because I thought the readme was getting too big. Feel free to add new content to the wiki as you see fit.
 
 ### Features
+- Docker tags corresponding to ownCloud releases so you won't get unexpectedly upgraded
 - Uses php-xcache for the best possible performance
 - Built in (optional) MySQL database server (faster than sqlite default)
   - Or specify your own pre-existing database server during setup
