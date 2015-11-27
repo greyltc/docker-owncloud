@@ -12,6 +12,7 @@ ENV START_APACHE true
 ENV START_MYSQL true
 ENV MAX_UPLOAD_SIZE 30G
 ENV TARGET_SUBDIR owncloud
+ENV OC_VERSION 8.2.1-1
 
 # remove info.php
 RUN rm /srv/http/info.php
@@ -29,7 +30,9 @@ RUN pacman -S --noconfirm --needed ffmpeg
 RUN pacman -S --noconfirm --needed libreoffice-fresh
 
 # Install owncloud
-RUN pacman -S --noconfirm --needed owncloud
+RUN pacman -Sw --noconfirm --needed owncloud
+RUN pacman -U --noconfirm --needed /var/cache/pacman/pkg/owncloud-${OC_VERSION}-any.pkg.tar.xz
+
 # add our custom config.php
 ADD configs/oc-config.php /usr/share/webapps/owncloud/config/config.php
 
