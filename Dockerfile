@@ -12,7 +12,7 @@ ENV START_APACHE true
 ENV START_MYSQL true
 ENV MAX_UPLOAD_SIZE 30G
 ENV TARGET_SUBDIR owncloud
-ENV OC_VERSION 8.2.1-1
+ENV OC_VERSION '*'
 
 # remove info.php
 RUN rm /srv/http/info.php
