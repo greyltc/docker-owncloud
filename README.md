@@ -76,7 +76,7 @@ docker exec -it oc apachectl restart #<-- note that this will terminate ongoing 
 -e REGENERATE_SSL_CERT=true -e SUBJECT=/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost
 ```
 The `SUBJECT` variable is actually optional here, but I put it in there to show how to change the generated certificate to your liking, especially important if you don't want your certificate to be for `localhost`  
-For either (A) or (B)~~, remember to turn on the option to force https connections in the ownCloud admin settings page to take advantage of your hardened security~~ UPDATE: starting in version 8.1, the OwnCloud devs have decided to remove this useful feature from their software by accepting the following PR: https://github.com/owncloud/core/pull/14651/files which removes the "Enforce HTTPS" tickbox from the settings page.
+For either (A) or (B)~~, remember to turn on the option to force https connections in the ownCloud admin settings page to take advantage of your hardened security~~ UPDATE: starting in version 8.1, the OwnCloud devs have decided to remove this useful feature from their software by accepting the following PR: https://github.com/owncloud/core/pull/14651 which removes the "Enforce HTTPS" tickbox from the settings page.
 1. **[Optional] Stop the docker-owncloud server instance**
 
   ```
