@@ -51,7 +51,7 @@ This image comes complete with a self-signed ssl certificate already built in, s
 
   ---
 _For option (A) (providing your own SSL cert files):_  
-Assuming you have your own `server.crt` and `server.key` files in a directory `~/sslCert` on the host machine run:   
+Assuming you have your own `server.crt` and `server.key` files in a directory `~/sslCert` on your host machine, then run (also on your host machine):   
 
   ```
 sudo chown -R root ~/sslCert
