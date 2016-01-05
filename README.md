@@ -13,7 +13,7 @@ __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for som
 
 ### Features
 - Docker tags corresponding to ownCloud releases so you won't get unexpectedly upgraded
-- Uses php-xcache for the best possible performance
+- Uses PHP caching via APCu for the best possible performance
 - Built in (optional) MySQL database server (faster than sqlite default)
   - Or specify your own pre-existing database server during setup
 - Web GUI driven initial setup of user/password/database

@@ -29,6 +29,11 @@ RUN pacman -S --noconfirm --needed ffmpeg
 # for document previews
 RUN pacman -S --noconfirm --needed libreoffice-fresh
 
+# tweaks for PHP caching with APCu
+RUN pacman -S --noconfirm --needed php-apcu-bc
+RUN sed -i '$a extension=apc.so' /etc/php/conf.d/apcu.ini'
+RUN sed -i '$a apc.enable_cli=1' /etc/php/conf.d/apcu.ini'
+
 # Install owncloud
 RUN pacman -Sw --noconfirm --needed owncloud
 RUN pacman -U --noconfirm --needed /var/cache/pacman/pkg/owncloud-${OC_VERSION}-any.pkg.tar.xz
