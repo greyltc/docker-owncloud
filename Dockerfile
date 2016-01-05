@@ -41,11 +41,6 @@ RUN pacman -U --noconfirm --needed /var/cache/pacman/pkg/owncloud-${OC_VERSION}-
 # add our custom config.php
 ADD configs/oc-config.php /usr/share/webapps/owncloud/config/config.php
 
-# fixup the permissions (because appairently the package maintainer can't get it right)
-ADD fixPerms.sh /root/fixPerms.sh
-RUN chmod +x /root/fixPerms.sh
-RUN /root/fixPerms.sh
-
 # Install owncloud addons
 RUN pacman -S --noconfirm --needed owncloud-app-bookmarks
 RUN pacman -S --noconfirm --needed owncloud-app-calendar
@@ -91,6 +86,11 @@ RUN systemctl enable cronie.service
 ADD configs/cron.conf /etc/oc-cron.conf
 RUN crontab /etc/oc-cron.conf
 RUN systemctl start cronie.service; exit 0 # force success due to issue with cronie start https://goo.gl/DcGGb
+
+# fixup the permissions (because appairently the package maintainer can't get it right)
+ADD fixPerms.sh /root/fixPerms.sh
+RUN chmod +x /root/fixPerms.sh
+RUN /root/fixPerms.sh
 
 # start servers
 CMD ["/root/startServers.sh"]
