@@ -70,7 +70,6 @@ RUN sed -i 's,Alias /owncloud /usr/share/webapps/owncloud/,Alias /${TARGET_SUBDI
 RUN sed -i '/<Directory \/usr\/share\/webapps\/owncloud\/>/a Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"' /etc/httpd/conf/extra/owncloud.conf
 RUN sed -i 's,php_admin_value open_basedir "[^"]*,&:/dev/urandom,g' /etc/httpd/conf/extra/owncloud.conf
 RUN sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
-RUN chown -R http:http /usr/share/webapps/owncloud/
 
 # expose some important directories as volumes
 #VOLUME ["/usr/share/webapps/owncloud/data"]
