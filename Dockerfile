@@ -31,8 +31,8 @@ RUN pacman -S --noconfirm --needed libreoffice-fresh
 
 # tweaks for PHP caching with APCu
 RUN pacman -S --noconfirm --needed php-apcu-bc
-RUN sed -i '$a extension=apc.so' /etc/php/conf.d/apcu.ini'
-RUN sed -i '$a apc.enable_cli=1' /etc/php/conf.d/apcu.ini'
+RUN sed -i '$a extension=apc.so' /etc/php/conf.d/apcu.ini
+RUN sed -i '$a apc.enable_cli=1' /etc/php/conf.d/apcu.ini
 
 # Install owncloud
 RUN pacman -Sw --noconfirm --needed owncloud
