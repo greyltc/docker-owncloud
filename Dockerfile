@@ -34,6 +34,7 @@ RUN sed -i '$a apc.enable_cli=1' /etc/php/conf.d/apcu.ini
 # Install owncloud
 RUN pacman -Sw --noconfirm --needed owncloud
 RUN pacman -U --noconfirm --needed /var/cache/pacman/pkg/owncloud-${OC_VERSION}-any.pkg.tar.xz
+RUN mkdir -p /usr/share/webapps/owncloud/data
 
 # add our custom config.php
 ADD configs/oc-config.php /usr/share/webapps/owncloud/config/config.php
