@@ -75,7 +75,7 @@ RUN sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
 #VOLUME ["/usr/share/webapps/owncloud/apps"]
 
 # place your ssl cert files in here. name them server.key and server.crt
-#VOLUME ["/https"]
+#VOLUME ["/root/sslKeys"]
 
 # Enable cron (Issue #42)
 RUN pacman -S --noconfirm --needed cronie
