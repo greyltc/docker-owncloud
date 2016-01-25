@@ -90,4 +90,4 @@ RUN chmod +x /root/fixPerms.sh
 RUN /root/fixPerms.sh
 
 # start servers
-CMD ["/root/startServers.sh"]
+CMD ["/usr/sbin/startServers.sh"]
