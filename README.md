@@ -63,7 +63,7 @@ sudo chmod 400 ~/sslCert/server.key
 Then insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
 
   ```
--v ~/sslCert:/https
+-v ~/sslCert:/root/sslKeys
 ```  
 
   ---
