@@ -68,14 +68,14 @@ Then insert the following into the docker startup command (from step 2. above) b
 
   ---
 _For option (B) (using the built-in script to re-generate your own self-sigend ssl certificate):_  
-  - The image includes a bash script (`/etc/httpd/conf/genSSLKey.sh`) that generates new ssl cert files on command (and overwrites the public ones included in this image). You can use this script to regenerate a new SSL key anytime on the fly. you only need to restart the apache server after regenerating your keys. After starting the docker image as described above, run the following commands:  
+  - The image includes a bash script (`/usr/sbin/setupApacheSSLKey.sh`) that generates new ssl cert files on command (and overwrites the public ones included in this image). You can use this script to regenerate a new SSL key anytime on the fly. you only need to restart the apache server after regenerating your keys. After starting the docker image as described above, run the following commands:  
   ```
-docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" /etc/httpd/conf/genSSLKey.sh'  
+docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" DO_SSL_SELF_GENERATION=true setupApacheSSLKey.sh'  
 docker exec -it oc apachectl restart #<-- note that this will terminate ongoing connections
 ```
   - To have a new ssl certificate generated automatically _every time_ the image is started, insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
   ```
--e REGENERATE_SSL_CERT=true -e SUBJECT=/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost
+-e DO_SSL_SELF_GENERATION=true -e SUBJECT=/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost
 ```
 The `SUBJECT` variable is actually optional here, but I put it in there to show how to change the generated certificate to your liking, especially important if you don't want your certificate to be for `localhost`  
 For either (A) or (B)~~, remember to turn on the option to force https connections in the ownCloud admin settings page to take advantage of your hardened security~~ UPDATE: starting in version 8.1, the OwnCloud devs have decided to remove this useful feature from their software by accepting the following PR: https://github.com/owncloud/core/pull/14651 which removes the "Enforce HTTPS" tickbox from the settings page.
