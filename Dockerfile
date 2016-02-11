@@ -89,5 +89,5 @@ ADD fixPerms.sh /root/fixPerms.sh
 RUN chmod +x /root/fixPerms.sh
 RUN /root/fixPerms.sh
 
-# start servers
-CMD ["/usr/sbin/startServers.sh"]
+# start the servers then go to bed
+CMD start-servers && sleep infinity
