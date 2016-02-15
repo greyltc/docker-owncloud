@@ -90,4 +90,4 @@ RUN chmod +x /root/fixPerms.sh
 RUN /root/fixPerms.sh
 
 # start the servers then go to bed
-CMD start-servers && sleep infinity
+CMD start-servers; sleep infinity
