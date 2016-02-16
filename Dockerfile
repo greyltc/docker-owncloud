@@ -5,9 +5,6 @@ MAINTAINER Grey Christoforo <grey@christoforo.net>
 # and/or staring the project on GitHub
 
 # set environmnt variable defaults
-ENV REGENERATE_SSL_CERT false
-ENV START_APACHE true
-ENV START_MYSQL true
 ENV MAX_UPLOAD_SIZE 30G
 ENV TARGET_SUBDIR owncloud
 ENV OC_VERSION '*'
