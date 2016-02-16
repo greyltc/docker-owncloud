@@ -1,4 +1,4 @@
-FROM l3iggs/lamp
+FROM greyltc/lamp:dev
 MAINTAINER l3iggs <l3iggs@live.com>
 # Report issues here: https://github.com/l3iggs/docker-owncloud/issues
 # Say thanks by adding a star or a comment here: https://registry.hub.docker.com/u/l3iggs/owncloud/
@@ -89,5 +89,5 @@ ADD fixPerms.sh /root/fixPerms.sh
 RUN chmod +x /root/fixPerms.sh
 RUN /root/fixPerms.sh
 
-# start servers
-CMD ["/usr/sbin/startServers.sh"]
+# start the servers then go to bed
+CMD start-servers; sleep infinity
