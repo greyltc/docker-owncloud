@@ -7,7 +7,7 @@ MAINTAINER Grey Christoforo <grey@christoforo.net>
 # set environmnt variable defaults
 ENV MAX_UPLOAD_SIZE 30G
 ENV TARGET_SUBDIR owncloud
-ENV OC_VERSION '8.2.2-2'
+ENV OC_VERSION "8.2.2-2"
 
 # remove info.php
 RUN rm /srv/http/info.php
