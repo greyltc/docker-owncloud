@@ -94,8 +94,6 @@ docker rm oc #<--WARNING: this will delete anything stored inside the container
 
 ### Updating to the latest container
 
-NOTE: Docker 1.7 is scheduled for release on 06/16/2015. This will bring with it named containers which will greatly simplify & improve container data management. Stay tuned for a new upgrade strategy.
-
 From time-to-time I'll update the continer to add new features or fix bugs or update to a new ownCloud server release, so you might want to update the ownCloud container you're using.
 - Run `docker pull l3iggs/owncloud`
 - If the above command returns "Status: Image is up to date" then you've got the latest image and you're done. Otherwise:
