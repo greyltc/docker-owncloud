@@ -12,16 +12,19 @@ https://registry.hub.docker.com/u/l3iggs/owncloud/
 __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for some stuff that I didn't include here because I thought the readme was getting too big. Feel free to add new content to the wiki as you see fit.
 
 ### Features
+- Streamlined [Let's Encrypt](https://letsencrypt.org/) functionality built right in
+  - This will fetch valid, trusted and free SSL certs for your domain and install them into the image!
+  - Horray for green lock icons!
 - __Superfast__
   - Uses PHP7 with APCu and Zend OpCache for maximum performance
-- With image version tags corresponding to OwnCloud release versions
-  - So you won't get unexpectedly upgraded and you can safely stay on an OC version you know works well
+- Now with image version tags corresponding to OwnCloud release versions
+  - So you won't get unexpectedly upgraded and you can safely stay on an OC version you know is working for you
 - Built in (optional) MySQL database server (faster than sqlite default)
   - Or specify your own pre-existing database server during setup
 - Web GUI driven initial setup of user/password/database
 - Based on Arch Linux ensuring __everything__ is cutting edge & up to date
 - SSL (HTTPS) encryption works out-of-the-box
-  - Tweaked for maximum security while maintaining compatibility 
+  - Tweaked for maximum security while maintaining compatibility
 - Optionally enable automatic SSL certificate regeneration at runtime for maximum security
   - Or easily incorporate your own SSL certificates
 - In-browser document viewing and editing ready (.odt, .doc, and .docx)
@@ -44,23 +47,28 @@ docker run --name oc -p 80:80 -p 443:443 -d l3iggs/owncloud
 ```
 1. **Setup ownCloud**  
 Point your browser to:  
-http://localhost/owncloud  
-or  
+~~http://localhost/owncloud~~ (I've decided to disable visiting the owncloud server without encryption)  
+~~or~~  
 https://localhost/owncloud  
 and follow the instructions in the web interface to finish the owncloud server setup.
 1. **[Optional] Harden security**  
-This image comes complete with a self-signed ssl certificate already built in, so https access is ready to go out of the box. I've provided this pre-generated certificate for convienence and testing purposes only. It affords greatly reduced security since the "private" key is not actually private; anyone can download this image and inspect the keys and then decrypt your ownCloud traffic. To make the ssl connection to this ownCloud server secure, you can (A) provide your own (secret) ssl certificate files or (B) use the script provided here to generate new, self-signed certificate files. Both will provide equal security but (B) will result in browser warnings whenever somone visits your site since the web browser will likely not trust your self-generated and self-signed keys.
+This image comes complete with a self-signed ssl certificate already built in, so https access is ready to go out of the box. I've provided this pre-generated certificate for convienence and testing purposes only. It affords greatly reduced security (compared to using secret certificates) since the "private" key is not actually private; anyone can download this image and inspect the keys and then decrypt your ownCloud traffic (sniffing your login credentials for example). To make the ssl connection to this ownCloud server secure, you can:  
+(A) provide your own (secret) ssl certificate files  
+(B) use the script provided here to generate new, self-signed certificate files  
+or  
+(C) use the script provided here to fetch (free) certificates for your domain from the [Let's Encrypt project](https://letsencrypt.org/)  
+All of these will provide equal security (since the encryption key will be kept secret) but (B) will result in browser warnings whenever somone visits your site since the web browser will likely not trust your self-generated and self-signed keys.
 
   ---
 _For option (A) (providing your own SSL cert files):_  
-Assuming you have your own `server.crt` and `server.key` files in a directory `~/sslCert` on your host machine, then run (also on your host machine):   
+  Put your `server.crt` and `server.key` files (named exactly that) in a directory `~/sslCert` on your host machine, then run (also on your host machine):   
 
   ```
 sudo chown -R root ~/sslCert
 sudo chgrp -R root ~/sslCert  
 sudo chmod 400 ~/sslCert/server.key
 ```  
-Then insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
+ Then insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
 
   ```
 -v ~/sslCert:/root/sslKeys
@@ -68,17 +76,32 @@ Then insert the following into the docker startup command (from step 2. above) b
 
   ---
 _For option (B) (using the built-in script to re-generate your own self-sigend ssl certificate):_  
-  - The image includes a bash script (`/usr/sbin/setupApacheSSLKey.sh`) that generates new ssl cert files on command (and overwrites the public ones included in this image). You can use this script to regenerate a new SSL key anytime on the fly. you only need to restart the apache server after regenerating your keys. After starting the docker image as described above, run the following commands:  
+  - The image includes a bash script (`/usr/sbin/setup-apache-ssl-key`) that generates new ssl cert files on command (and overwrites the pregenerated ones included in this image). You can use this script to regenerate a new SSL key anytime, on the fly. After starting the docker image as described above, run the following command:  
   ```
-docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" DO_SSL_SELF_GENERATION=true setupApacheSSLKey.sh'  
-docker exec -it oc apachectl restart #<-- note that this will terminate ongoing connections
+docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" DO_SSL_SELF_GENERATION=true setup-apache-ssl-key'  
 ```
   - To have a new ssl certificate generated automatically _every time_ the image is started, insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
   ```
 -e DO_SSL_SELF_GENERATION=true -e SUBJECT=/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost
 ```
-The `SUBJECT` variable is actually optional here, but I put it in there to show how to change the generated certificate to your liking, especially important if you don't want your certificate to be for `localhost`  
-For either (A) or (B)~~, remember to turn on the option to force https connections in the ownCloud admin settings page to take advantage of your hardened security~~ UPDATE: starting in version 8.1, the OwnCloud devs have decided to remove this useful feature from their software by accepting the following PR: https://github.com/owncloud/core/pull/14651 which removes the "Enforce HTTPS" tickbox from the settings page.
+  The `SUBJECT` variable is actually optional here, but I put it in there to show how to change the generated certificate to your liking, especially important if you don't want your certificate to be for `localhost`  
+
+  ---
+_For option (C) (fetching a free, trusted cert from letsencrypt.org):_  
+  For this to work, __this container must be reachable from the internet by visiting http://your.domain.tld__ (where "your.domain.tld" will obviously be unique to you). In fact, a Let's Encrypt robot will attempt to visit this address via port 80 to read files served up by the apache server in this container during the certificate fetching process to verify your ownership of the domain.  
+  After starting the docker image as described above, run the following command (substituting your proper email address and domain name):  
+  ```
+docker exec -it oc sh -c 'EMAIL=youremail@addre.ss HOSTNAME=your.domain.tld DO_SSL_LETS_ENCRYPT_FETCH=true setup-apache-ssl-key'  
+```
+  ~30 seconds later you should get a green lock in your browser when visiting your OC server at https://your.domain.tld/owncloud  
+  Now save your newly fetched certificate files somewhere safe:
+  ```
+docker cp oc:/etc/letsencrypt/live/your.domain.tld ~/letsencryptFor_your.domain.tld
+```
+  and next time you use docker to start your OC server container, use option (A) to feed your `.key` and `.crt` files into the image when it starts.  
+  __NOTE:__ Let's Encrypt gives you a certificate that's valid for three months, afterwhich it needs to be renewed if you'd like to continue getting green locks in your browser. If you run the above `DO_SSL_LETS_ENCRYPT_FETCH=true setup-apache-ssl-key` command, and then you leave your server running without restarting for three months or longer, your certificate *should* be auto-renewed forever. If you restart the container, you'll probably need to re-issue the `DO_SSL_LETS_ENCRYPT_FETCH=true setup-apache-ssl-key` command again manually if you don't want your certificate to expire three months after you first fetched it.  
+  __NOTE #2:__ Let's Encrypt has a strict rate limiting policy; it will only grant 5 certificates / 7 days / domain so be very careful with how often you issue the `DO_SSL_LETS_ENCRYPT_FETCH=true setup-apache-ssl-key` command above
+
 1. **[Optional] Stop the docker-owncloud server instance**
 
   ```
