@@ -89,9 +89,9 @@ docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=
   ---
 _For option (C) (fetching a free, trusted cert from letsencrypt.org):_  
   For this to work, __this container must be reachable from the internet by visiting http://your.domain.tld__ (where "your.domain.tld" will obviously be unique to you). In fact, a Let's Encrypt robot will attempt to visit this address via port 80 to read files served up by the apache server in this container during the certificate fetching process to verify your ownership of the domain.  
-  After starting the docker image as described above, run the following command (substituting your proper email address and domain name):  
+  Start the docker image as described above, except you must specify your hostname: add `--hostname=your.domain.tld` between `run` and `--name`. Then once the container is running, issue the following command (substituting your proper email address):  
   ```
-docker exec -it oc sh -c 'EMAIL=youremail@addre.ss HOSTNAME=your.domain.tld DO_SSL_LETS_ENCRYPT_FETCH=true setup-apache-ssl-key'  
+docker exec -it oc sh -c 'EMAIL=youremail@addre.ss DO_SSL_LETS_ENCRYPT_FETCH=true setup-apache-ssl-key'  
 ```
   ~30 seconds later you should get a green lock in your browser when visiting your OC server at https://your.domain.tld/owncloud  
   Now save your newly fetched certificate files somewhere safe:
