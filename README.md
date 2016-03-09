@@ -96,7 +96,7 @@ docker exec -it oc sh -c 'EMAIL=youremail@addre.ss DO_SSL_LETS_ENCRYPT_FETCH=tru
   ~30 seconds later you should get a green lock in your browser when visiting your OC server at https://your.domain.tld/owncloud  
   Now save your newly fetched certificate files somewhere safe:
   ```
-docker cp oc:/etc/letsencrypt/live/your.domain.tld ~/letsencryptFor_your.domain.tld
+docker cp oc:/etc/letsencrypt/archive/your.domain.tld ~/letsencryptFor_your.domain.tld
 ```
   and next time you use docker to start your OC server container, use option (A) to feed your `.key` and `.crt` files into the image when it starts.  
   __NOTE:__ Let's Encrypt gives you a certificate that's valid for three months, afterwhich it needs to be renewed if you'd like to continue getting green locks in your browser. If you run the above `DO_SSL_LETS_ENCRYPT_FETCH=true setup-apache-ssl-key` command, and then you leave your server running without restarting for three months or longer, your certificate *should* be auto-renewed forever. If you restart the container, you'll probably need to re-issue the `DO_SSL_LETS_ENCRYPT_FETCH=true setup-apache-ssl-key` command again manually if you don't want your certificate to expire three months after you first fetched it.  
