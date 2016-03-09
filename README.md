@@ -1,6 +1,6 @@
 docker-owncloud
 ===============
-Simple to use Docker container with the latest ownCloud server release, complete with all the bells and whistles. This project is 100% transparent and trustable, every file in the resulting docker image is traceable and inspectable by following up the docker image depenancy tree which starts with [my Arch Linux base image](https://github.com/l3iggs/docker-archlinux).
+Simple to use Docker container with the latest ownCloud server release, complete with all the bells and whistles. This project is 100% transparent and trustable, every file in the resulting docker image is traceable and inspectable by following up the docker image depenancy tree which starts with [my Arch Linux base image](https://github.com/greyltc/docker-archlinux).
 
 Please report any issues or improvement ideas here:  
 https://github.com/l3iggs/docker-owncloud/issues
