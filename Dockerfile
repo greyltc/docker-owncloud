@@ -11,7 +11,6 @@ ENV OC_VERSION '*'
 
 # do the install things
 ADD install-ownCloud.sh /usr/sbin/install-owncloud
-RUN pacman --noconfirm -Syyu 
 RUN install-owncloud
 
 # add our config.php stub
