@@ -24,12 +24,6 @@ pacman -S --noconfirm --noprogress --needed owncloud-app-contacts
 pacman -S --noconfirm --noprogress --needed owncloud-app-documents
 pacman -S --noconfirm --noprogress --needed owncloud-app-gallery
 
-# disable Apache's dav (conflicts with OC's built in dav)
-sed -i 's,^DAVLockDB /home/httpd/DAV/DAVLock,#&,g' /etc/httpd/conf/httpd.conf
-sed -i 's,^LoadModule dav_module modules/mod_dav.so,#&,g' /etc/httpd/conf/httpd.conf
-sed -i 's,^LoadModule dav_fs_module modules/mod_dav_fs.so,#&,g' /etc/httpd/conf/httpd.conf
-sed -i 's,^LoadModule dav_lock_module modules/mod_dav_lock.so,#&,g' /etc/httpd/conf/httpd.conf
-
 # enable large file uploads
 sed -i 's,<IfModule mod_php5.c>,<IfModule mod_php7.c>,g' /usr/share/webapps/owncloud/.htaccess
 sed -i "s,php_value upload_max_filesize 513M,php_value upload_max_filesize ${MAX_UPLOAD_SIZE},g" /usr/share/webapps/owncloud/.htaccess
