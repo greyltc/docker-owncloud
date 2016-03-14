@@ -13,11 +13,6 @@ pacman -S --noconfirm --noprogress --needed ffmpeg
 # for document previews
 pacman -S --noconfirm --noprogress --needed libreoffice-fresh
 
-# tweaks for PHP caching with APCu
-pacman -S --noconfirm --noprogress --needed php-apcu-bc
-sed -i '$a extension=apc.so' /etc/php/conf.d/apcu.ini
-sed -i '$a apc.enable_cli=1' /etc/php/conf.d/apcu.ini
-
 # owncloud itself
 pacman -Sw --noconfirm --noprogress --needed owncloud
 pacman -U --noconfirm --needed /var/cache/pacman/pkg/owncloud-${OC_VERSION}-any.pkg.tar.xz
