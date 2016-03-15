@@ -2,7 +2,7 @@
 ocpath='/usr/share/webapps/owncloud'
 htuser='http'
 htgroup='http'
-rootuser='root' # On QNAP this is admin
+rootuser='root'
 
 printf "Creating possible missing Directories\n"
 mkdir -p $ocpath/data
@@ -21,15 +21,16 @@ chown -R ${htuser}:${htgroup} ${ocpath}/themes/
 chown -R ${htuser}:${htgroup} ${ocpath}/assets/
 
 chmod +x ${ocpath}/occ
+chmod g+w ${ocpath}/.user.ini
 
 printf "chmod/chown .htaccess\n"
 if [ -f ${ocpath}/.htaccess ]
  then
-  chmod 0644 ${ocpath}/.htaccess
+  chmod 0664 ${ocpath}/.htaccess
   chown ${rootuser}:${htgroup} ${ocpath}/.htaccess
 fi
 if [ -f ${ocpath}/data/.htaccess ]
  then
-  chmod 0644 ${ocpath}/data/.htaccess
+  chmod 0664 ${ocpath}/data/.htaccess
   chown ${rootuser}:${htgroup} ${ocpath}/data/.htaccess
 fi
