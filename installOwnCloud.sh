@@ -16,7 +16,7 @@ pacman -S --noconfirm --noprogress --needed libreoffice-fresh
 # owncloud itself
 su docker -c 'pacaur -Sw --noprogressbar --noedit --noconfirm owncloud-archive'
 pacman -U --noconfirm --needed /tmp/pacaurtmp-docker/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
-#rm -rf /tmp/pacaurtmp-docker
+rm -rf /tmp/pacaurtmp-docker
 
 # official ownCloud addons
 #pacman -S --noconfirm --noprogress --needed owncloud-app-bookmarks
