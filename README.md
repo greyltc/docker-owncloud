@@ -115,11 +115,6 @@ docker rm oc #<--WARNING: this will delete anything stored inside the container
 ```
 1. **Profit.**
 
-### Updating to the latest container
-
-From time-to-time I'll update the continer to add new features or fix bugs or update to a new ownCloud server release, so you might want to update the ownCloud container you're using.
-- Run `docker pull l3iggs/owncloud`
-- If the above command returns "Status: Image is up to date" then you've got the latest image and you're done. Otherwise:
-  - Run `docker stop oc` <-- warning: this will immediately stop your server
-  - Then run `docker rm oc` <-- WARNING: this may cause catastrophic data loss. It WILL delete anything stored inside the container. If you wish to retain important things like data files and configuration files after running this command, then see the wiki on Github for instructions on how to store these things outside of the container.
-- Now start the new container again like normal.
+### Updating your ownCloud server in this container
+Periodically new ownCloud server versions will be released. You should probably keep your server on whatever the latest stable version is. When a new update is released you'll see a banner appear across the top of the ownCloud web interface indicating that it's time to upgrade.  
+You should follow [the official ownCloud instructions](https://doc.owncloud.org/server/9.0/admin_manual/maintenance/update.html) for updating your ownCloud server using the updater app built into this container. You'll need to change the permissions of some files in the container to allow them to be updated. I've tried to make this straightforward by including a script to manage the permissions for you. Before you run the updater app (as described in the official instructions), run `docker exec -it oc sh -c 'set-oc-perms upgrade'`. Then after you've completed the upgrade, set the permissions back to their "safer" default values like this: `docker exec -it oc sh -c 'set-oc-perms runtime'`.
