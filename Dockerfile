@@ -8,9 +8,8 @@ MAINTAINER Grey Christoforo <grey@christoforo.net>
 ENV TARGET_SUBDIR owncloud
 ENV OC_VERSION '*'
 
-# add owncloud permissions setting/fixing scripts
-ADD setRunPerms.sh /usr/sbin/set-oc-run-perms
-ADD setUpgradePerms.sh /usr/sbin/set-oc-upgrade-perms
+# add owncloud permissions setting/fixing script
+ADD setPerms.sh /usr/sbin/set-oc-perms
 
 # do the install things
 ADD installOwnCloud.sh /usr/sbin/install-owncloud
