@@ -6,6 +6,7 @@ MAINTAINER Grey Christoforo <grey@christoforo.net>
 
 # set environmnt variable defaults
 ENV TARGET_SUBDIR owncloud
+ENV ALLOW_INSECURE false
 ENV OC_VERSION '*'
 
 # add owncloud permissions setting/fixing script
@@ -22,6 +23,9 @@ RUN chown http:http /usr/share/webapps/owncloud/config/config.php; \
 
 # add our cron stub
 ADD configs/oc-cron.conf /etc/cron.d/oc-cron.conf
+
+# add our apache config stub
+ADD configs/apache.conf /etc/httpd/conf/extra/owncloud.conf
 
 # expose some important directories as volumes
 #VOLUME ["/usr/share/webapps/owncloud/data"]
