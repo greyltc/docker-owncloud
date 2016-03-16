@@ -47,8 +47,6 @@ docker run --name oc -p 80:80 -p 443:443 -d l3iggs/owncloud
 ```
 1. **Setup ownCloud**  
 Point your browser to:  
-~~http://localhost/owncloud~~ (I've decided to retire the non-secure http portal shortly)  
-~~or~~  
 https://localhost/owncloud  
 and follow the instructions in the web interface to finish the owncloud server setup.
 1. **[Optional] Harden security**  
