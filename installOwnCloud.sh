@@ -5,7 +5,7 @@ set -e -u -o pipefail
 rm /srv/http/info.php
 
 # to mount SAMBA shares: 
-#pacman -S --noconfirm --noprogress --needed smbclient
+pacman -S --noconfirm --noprogress --needed smbclient
 
 # for video file previews
 pacman -S --noconfirm --noprogress --needed ffmpeg
@@ -17,13 +17,6 @@ pacman -S --noconfirm --noprogress --needed libreoffice-fresh
 su docker -c 'pacaur -Sw --noprogressbar --noedit --noconfirm owncloud-archive'
 pacman -U --noconfirm --needed /tmp/pacaurtmp-docker/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
 rm -rf /tmp/pacaurtmp-docker
-
-# official ownCloud addons
-#pacman -S --noconfirm --noprogress --needed owncloud-app-bookmarks
-#pacman -S --noconfirm --noprogress --needed owncloud-app-calendar
-#pacman -S --noconfirm --noprogress --needed owncloud-app-contacts
-#pacman -S --noconfirm --noprogress --needed owncloud-app-documents
-#pacman -S --noconfirm --noprogress --needed owncloud-app-gallery
 
 # setup Apache for owncloud
 cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
