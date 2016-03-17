@@ -17,12 +17,12 @@ ADD installOwnCloud.sh /usr/sbin/install-owncloud
 RUN install-owncloud
 
 # add our config.php stub
-ADD configs/oc-config.php /usr/share/webapps/owncloud/config/config.php
+ADD configs/config.php /usr/share/webapps/owncloud/config/config.php
 RUN chown http:http /usr/share/webapps/owncloud/config/config.php; \
     chmod 0640 /usr/share/webapps/owncloud/config/config.php
 
 # add our cron stub
-ADD configs/oc-cron.conf /etc/cron.d/oc-cron.conf
+ADD configs/cron.conf /etc/cron.d/oc.conf
 
 # add our apache config stub
 ADD configs/apache.conf /etc/httpd/conf/extra/owncloud.conf
