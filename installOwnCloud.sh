@@ -4,7 +4,7 @@ set -e -u -o pipefail
 # remove info.php (prevents server info leak)
 rm /srv/http/info.php
 
-# to mount SAMBA shares: 
+# to mount SMB shares: 
 pacman -S --noconfirm --noprogress --needed smbclient
 
 # for video file previews
@@ -24,6 +24,5 @@ sed -i 's,Alias /owncloud "/usr/share/webapps/owncloud",Alias /${TARGET_SUBDIR} 
 sed -i '/<Directory \/usr\/share\/webapps\/owncloud\/>/a   Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"' /etc/httpd/conf/extra/owncloud.conf
 sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
 
-# install cron (Issue #42)
-pacman -S --noconfirm --needed --noprogress cronie
-
+# reduce docker layer size
+cleanup-image
