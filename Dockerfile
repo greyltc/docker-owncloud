@@ -22,7 +22,7 @@ RUN chown http:http /usr/share/webapps/owncloud/config/config.php; \
     chmod 0640 /usr/share/webapps/owncloud/config/config.php
 
 # add our cron stub
-ADD configs/cron.conf /etc/cron.d/oc.conf
+ADD configs/cron.conf /etc/cron.d/owncloud.conf
 
 # add our apache config stub
 ADD configs/apache.conf /etc/httpd/conf/extra/owncloud.conf
