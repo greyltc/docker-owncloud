@@ -21,7 +21,6 @@ rm -rf /tmp/pacaurtmp-docker
 # setup Apache for owncloud
 cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
 sed -i 's,Alias /owncloud "/usr/share/webapps/owncloud",Alias /${TARGET_SUBDIR} "/usr/share/webapps/owncloud",g' /etc/httpd/conf/extra/owncloud.conf
-sed -i '/<Directory \/usr\/share\/webapps\/owncloud\/>/a   Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"' /etc/httpd/conf/extra/owncloud.conf
 sed -i '$a Include conf/extra/owncloud.conf' /etc/httpd/conf/httpd.conf
 
 # reduce docker layer size
