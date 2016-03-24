@@ -13,6 +13,9 @@ pacman -S --noconfirm --noprogress --needed ffmpeg
 # for document previews
 pacman -S --noconfirm --noprogress --needed libreoffice-fresh
 
+# not 100% sure what needs this:
+pacman -S --noconfirm --noprogress --needed gamin
+
 # owncloud itself
 su docker -c 'pacaur -Sw --noprogressbar --noedit --noconfirm owncloud-archive'
 pacman -U --noconfirm --needed /tmp/pacaurtmp-docker/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
