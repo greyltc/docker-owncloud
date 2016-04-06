@@ -19,6 +19,8 @@ pacman -S --noconfirm --noprogress --needed gamin
 # owncloud itself
 su docker -c 'pacaur -Sw --noprogressbar --noedit --noconfirm owncloud-archive'
 pacman -U --noconfirm --needed /tmp/pacaurtmp-docker/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
+# temporary (remove @v9.0.1) fix for https://github.com/l3iggs/docker-owncloud/issues/83
+sed -i 's,<IfModule mod_php5.c>,<IfModule mod_php7.c>,g' /usr/share/webapps/owncloud/.htaccess
 
 # setup Apache for owncloud
 cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
