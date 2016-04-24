@@ -7,7 +7,7 @@ MAINTAINER Grey Christoforo <grey@christoforo.net>
 # set environmnt variable defaults
 ENV TARGET_SUBDIR owncloud
 ENV ALLOW_INSECURE false
-ENV OC_VERSION '*'
+ENV OC_VERSION '9.0.1-1'
 
 # add owncloud permissions setting/fixing script
 ADD setPerms.sh /usr/sbin/set-oc-perms
