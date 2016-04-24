@@ -45,6 +45,7 @@ __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for som
   ```
 docker run --name oc -p 80:80 -p 443:443 -d l3iggs/owncloud
 ```
+  __NOTE:__ In case you have an outdated version of `l3iggs/owncloud` you can update it with `docker pull l3iggs/owncloud` before you run the server via the above `docker run...` command
 1. **Setup ownCloud**  
 Point your browser to:  
 https://localhost/owncloud  
