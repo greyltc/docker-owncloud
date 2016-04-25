@@ -17,7 +17,7 @@ __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for som
   - Horray for green lock icons!
 - __Superfast__
   - Uses PHP7 with APCu and Zend OpCache for maximum performance
-- Now with image version tags corresponding to OwnCloud release versions
+- Now with [image version tags](https://hub.docker.com/r/l3iggs/owncloud/tags/) corresponding to OwnCloud release versions
   - So you won't get unexpectedly upgraded and you can safely stay on an OC version you know is working for you
 - Built in (optional) MySQL database server (faster than sqlite default)
   - Or specify your own pre-existing database server during setup
