@@ -14,7 +14,7 @@ pacman -S --noconfirm --noprogress --needed ffmpeg
 pacman -S --noconfirm --noprogress --needed libreoffice-fresh
 
 # for image previews
-pacman -S --noconfirm --noprogress --needed imagemagick
+pacman -S --noconfirm --noprogress --needed imagemagick ghostscript openexr openexr openexr libxml2 librsvg libpng libwebp
 
 # not 100% sure what needs this:
 pacman -S --noconfirm --noprogress --needed gamin
