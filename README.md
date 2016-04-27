@@ -46,10 +46,10 @@ __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for som
 docker run --name oc -p 80:80 -p 443:443 -d l3iggs/owncloud
 ```
   __NOTE:__ In case you have an outdated version of `l3iggs/owncloud` you can update it with `docker pull l3iggs/owncloud` before you run the server via the above `docker run...` command
+1. **Access your ownCloud server**  
+Point your web browser to __https://localhost/owncloud__
 1. **Setup ownCloud**  
-Point your browser to:  
-https://localhost/owncloud  
-and follow the instructions in the web interface to finish the owncloud server setup.
+Follow the on-screen instructions to perform the initial setup of your server.
 1. **[Optional] Harden security**  
 This image comes complete with a self-signed ssl certificate already built in, so https access is ready to go out of the box. I've provided this pre-generated certificate for convienence and testing purposes only. It affords greatly reduced security (compared to using secret certificates) since the "private" key is not actually private; anyone can download this image and inspect the keys and then decrypt your ownCloud traffic (sniffing your login credentials for example). To make the ssl connection to this ownCloud server secure, you can:  
 (A) provide your own (secret) ssl certificate files  
