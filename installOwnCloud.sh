@@ -13,12 +13,15 @@ pacman -S --noconfirm --noprogress --needed ffmpeg
 # for document previews
 pacman -S --noconfirm --noprogress --needed libreoffice-fresh
 
+# for image previews
+pacman -S --noconfirm --noprogress --needed imagemagick
+
 # not 100% sure what needs this:
 pacman -S --noconfirm --noprogress --needed gamin
 
 # owncloud itself
 su docker -c 'pacaur -Sm --noprogressbar --noedit --noconfirm owncloud-archive'
-pacman -U --noconfirm --needed /home/docker/.cache/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
+pacman -U --noconfirm --needed /home/docker/.cache/pacaur/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
 
 # setup Apache for owncloud
 cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
