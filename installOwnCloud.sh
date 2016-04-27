@@ -17,8 +17,8 @@ pacman -S --noconfirm --noprogress --needed libreoffice-fresh
 pacman -S --noconfirm --noprogress --needed gamin
 
 # owncloud itself
-su docker -c 'pacaur -Sw --noprogressbar --noedit --noconfirm owncloud-archive'
-pacman -U --noconfirm --needed /tmp/pacaurtmp-docker/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
+su docker -c 'pacaur -Sm --noprogressbar --noedit --noconfirm owncloud-archive'
+pacman -U --noconfirm --needed /home/docker/.cache/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
 
 # setup Apache for owncloud
 cp /etc/webapps/owncloud/apache.example.conf /etc/httpd/conf/extra/owncloud.conf
