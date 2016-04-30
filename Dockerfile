@@ -4,6 +4,9 @@ MAINTAINER Grey Christoforo <grey@christoforo.net>
 # Say thanks by adding a star or a comment here: https://registry.hub.docker.com/u/l3iggs/owncloud/
 # and/or staring the project on GitHub
 
+# unocmment this to update the container's mirrorlist
+#RUN get-new-mirrors
+
 # set environmnt variable defaults
 ENV TARGET_SUBDIR owncloud
 ENV ALLOW_INSECURE false
