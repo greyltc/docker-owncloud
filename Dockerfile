@@ -12,9 +12,6 @@ ENV TARGET_SUBDIR owncloud
 ENV ALLOW_INSECURE false
 ENV OC_VERSION '*'
 
-# add owncloud permissions setting/fixing script
-ADD setPerms.sh /usr/sbin/set-oc-perms
-
 # do the install things
 ADD installOwnCloud.sh /usr/sbin/install-owncloud
 RUN install-owncloud
