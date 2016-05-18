@@ -14,7 +14,7 @@ __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for som
 ### Features
 - Streamlined [Let's Encrypt](https://letsencrypt.org/) functionality built right in
   - This will fetch valid, trusted and free SSL certs for your domain and install them into the image!
-  - Horray for green lock icons!
+  - Hurray for green lock icons!
 - __Superfast__
   - Uses PHP7 with APCu and Zend OpCache for maximum performance
 - Now with [image version tags](https://hub.docker.com/r/l3iggs/owncloud/tags/) corresponding to OwnCloud release versions
