@@ -12,7 +12,8 @@ https://registry.hub.docker.com/u/l3iggs/owncloud/
 __Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for some stuff that I didn't include here because I thought the readme was getting too big. Feel free to add new content to the wiki as you see fit.
 
 ### Features
-- __NEW FEATURE:__ Try the latest ownCloud daily build by using `l3iggs/owncloud:daily` (probably you should report any issues you find here to [the official oc issue tracker](https://doc.owncloud.org/server/9.1/developer_manual//bugtracker/))
+- __NEW FEATURE:__ Try the latest ownCloud daily build by using `l3iggs/owncloud:daily`
+  - Probably you should report any issues you find here to [the official oc issue tracker](https://doc.owncloud.org/server/9.1/developer_manual//bugtracker/)
 - Streamlined [Let's Encrypt](https://letsencrypt.org/) functionality built right in
   - This will fetch valid, trusted and free SSL certs for your domain and install them into the image!
   - Hurray for green lock icons!
