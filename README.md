@@ -3,13 +3,13 @@ docker-owncloud
 Simple to use Docker container with the latest stable ownCloud server release, complete with all the bells and whistles. This project is 100% transparent and trustable, every file in the resulting docker image is traceable and inspectable by following up the docker image depenancy tree which starts with [my Arch Linux base image](https://github.com/greyltc/docker-archlinux).
 
 Please report any issues or improvement ideas here:  
-https://github.com/l3iggs/docker-owncloud/issues
+https://github.com/greyltc/docker-owncloud/issues
 Pull requests welcome! Let's work together!
 
 Say thanks by adding a comment or a star here:  
 https://registry.hub.docker.com/u/l3iggs/owncloud/
 
-__Check out [the wiki](https://github.com/l3iggs/docker-owncloud/wiki)__ for some stuff that I didn't include here because I thought the readme was getting too big. Feel free to add new content to the wiki as you see fit.
+__Check out [the wiki](https://github.com/greyltc/docker-owncloud/wiki)__ for some stuff that I didn't include here because I thought the readme was getting too big. Feel free to add new content to the wiki as you see fit.
 
 ### Features
 - __NEW FEATURE:__ Try the latest ownCloud daily build by using `l3iggs/owncloud:daily`
