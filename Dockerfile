@@ -2,7 +2,7 @@ FROM greyltc/lamp-aur
 MAINTAINER Grey Christoforo <grey@christoforo.net>
 # Report issues with this to the GitHub project: https://github.com/l3iggs/docker-owncloud/issues
 # Say thanks by adding a star or a comment here: https://registry.hub.docker.com/u/l3iggs/owncloud/
-# and/or staring the project on GitHub
+# and/or starring the project on GitHub
 
 # uncomment this to update the container's mirrorlist
 #RUN get-new-mirrors
