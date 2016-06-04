@@ -1,6 +1,6 @@
 FROM greyltc/lamp-aur
 MAINTAINER Grey Christoforo <grey@christoforo.net>
-# Report issues with this to the GitHub project: https://github.com/l3iggs/docker-owncloud/issues
+# Report issues with this to the GitHub project: https://github.com/greyltc/docker-owncloud/issues
 # Say thanks by adding a star or a comment here: https://registry.hub.docker.com/u/l3iggs/owncloud/
 # and/or starring the project on GitHub
 
