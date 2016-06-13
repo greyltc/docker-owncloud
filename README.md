@@ -1,6 +1,6 @@
 docker-owncloud
 ===============
-__4 June 2016 Update:__ It looks to me like [some major thing just happend to ownCloud](http://fortune.com/2016/06/03/what-happened-to-owncloud/). Appairently a significant number of the core ownCloud devs have jumped ship and started a new cloud thingy called Nextcloud. I've made [a docker container](https://hub.docker.com/r/greyltc/nextcloud/) and [associated github repo](https://github.com/greyltc/docker-nextcloud) just like this one to follow nextcloud too. I'll keep suporting this project along side the new Nextcloud one until I can see a winner.
+__4 June 2016 Update:__ It looks to me like [some major thing just happend to ownCloud](http://fortune.com/2016/06/03/what-happened-to-owncloud/). Appairently a significant number of the core ownCloud devs have jumped ship and started a new cloud thingy called Nextcloud. I've made [a docker container](https://hub.docker.com/r/greyltc/nextcloud/) and [associated github repo](https://github.com/greyltc/docker-nextcloud) just like this one to follow nextcloud too. I'll keep supporting this project along side the new Nextcloud one until I can see a winner.
 
 Simple to use Docker container with the latest stable ownCloud server release, complete with all the bells and whistles. This project is 100% transparent and trustable, every file in the resulting docker image is traceable and inspectable by following up the docker image depenancy tree which starts with [my Arch Linux base image](https://github.com/greyltc/docker-archlinux).
 
