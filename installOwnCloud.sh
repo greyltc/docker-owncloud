@@ -20,8 +20,8 @@ pacman -S --noconfirm --noprogress --needed imagemagick ghostscript openexr open
 pacman -S --noconfirm --noprogress --needed gamin
 
 # owncloud itself
-su docker -c 'pacaur -m --noprogressbar --noedit --noconfirm owncloud-archive'
-pacman -U --noconfirm --needed /home/docker/.cache/pacaur/owncloud-archive/owncloud-archive-${OC_VERSION}-any.pkg.tar
+su docker -c 'pacaur -Sm --noprogressbar --noedit --noconfirm owncloud-daily'
+pacman -U --noconfirm --needed /home/docker/.cache/pacaur/owncloud-daily/owncloud-daily-${OC_VERSION}-any.pkg.tar
 
 # install some apps
 pacman -S --noconfirm --noprogress --needed owncloud-app-bookmarks owncloud-app-calendar owncloud-app-contacts owncloud-app-documents
