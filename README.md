@@ -63,7 +63,8 @@ All of these will provide equal security (since the encryption key will be kept 
 
   ---
 _For option (A) (providing your own SSL cert files):_  
-  Put your `server.crt` and `server.key` files (named exactly that) in a directory `~/sslCert` on your host machine, then run (also on your host machine):   
+  The Apache config file calls out the need for two files here: SSLCertificateFile and SSLCertificateKeyFile. You should have those before you start.
+  Name your certificate file `fullchain.pem` and your key file `privkey.pem` and put them in a directory `~/sslCert` on your host machine, then run (also on your host machine):   
 
   ```
 sudo chown -R root ~/sslCert
