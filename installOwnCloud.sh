@@ -10,6 +10,9 @@ pacman -S --noconfirm --noprogress --needed smbclient
 # for video file previews
 pacman -S --noconfirm --noprogress --needed ffmpeg
 
+# for ssh mounts
+pacman -S --noconfirm --noprogress --needed openssh
+
 # for document previews
 pacman -S --noconfirm --noprogress --needed libreoffice-fresh
 
