@@ -1,6 +1,6 @@
 docker-owncloud
 ===============
-__4 June 2016 Update:__ It looks to me like [some major thing just happend to ownCloud](http://fortune.com/2016/06/03/what-happened-to-owncloud/). Appairently a significant number of the core ownCloud devs have jumped ship and started a new cloud thingy called Nextcloud. I've made [a docker container](https://hub.docker.com/r/greyltc/nextcloud/) and [associated github repo](https://github.com/greyltc/docker-nextcloud) just like this one to follow nextcloud too. I'll keep supporting this project along side the new Nextcloud one until I can see a winner.
+__4 June 2016 Update:__ It looks to me like [some major thing just happend to ownCloud](http://fortune.com/2016/06/03/what-happened-to-owncloud/). Apparently a significant number of the core ownCloud devs have jumped ship and started a new cloud thingy called Nextcloud. I've made [a docker container](https://hub.docker.com/r/greyltc/nextcloud/) and [associated github repo](https://github.com/greyltc/docker-nextcloud) just like this one to follow nextcloud too. I'll keep supporting this project along side the new Nextcloud one until I can see a winner.
 
 Simple to use Docker container with the latest stable ownCloud server release, complete with all the bells and whistles. This project is 100% transparent and trustable, every file in the resulting docker image is traceable and inspectable by following up the docker image depenancy tree which starts with [my Arch Linux base image](https://github.com/greyltc/docker-archlinux).
 
@@ -69,7 +69,7 @@ _For option (A) (providing your own SSL cert files):_
   ```
 sudo chown -R root ~/sslCert
 sudo chgrp -R root ~/sslCert  
-sudo chmod 400 ~/sslCert/server.key
+sudo chmod 400 ~/sslCert/privkey.pem
 ```  
  Then insert the following into the docker startup command (from step 2. above) between `run` and `--name`:  
 
@@ -78,7 +78,7 @@ sudo chmod 400 ~/sslCert/server.key
 ```  
 
   ---
-_For option (B) (using the built-in script to re-generate your own self-sigend ssl certificate):_  
+_For option (B) (using the built-in script to re-generate your own self-signed ssl certificate):_ 
   - The image includes a bash script (`/usr/sbin/setup-apache-ssl-key`) that generates new ssl cert files on command (and overwrites the pregenerated ones included in this image). You can use this script to regenerate a new SSL key anytime, on the fly. After starting the docker image as described above, run the following command:  
   ```
 docker exec -it oc sh -c 'SUBJECT="/C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost" DO_SSL_SELF_GENERATION=true setup-apache-ssl-key'  
